@@ -1,0 +1,553 @@
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Datos Grasas Agregar</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" />
+    <!--CSS de bootstrap-->
+    <link rel="stylesheet" href="/bootstrap/bootstrap.css" />
+    <!--CSS estilo de la página-->
+    <link rel="stylesheet" href="/css/styleDatosAceites.css" type="text/css" />
+    {{! CSS fonts }}
+    <link rel="stylesheet" href="/css/fonts.css" />
+  </head>
+
+  <body>
+
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <div class="container">
+        <!--Logo-->
+        <a class="navbar-brand fs-4" href="/">Yisus</a>
+        <a class="navbar-brand fs-4" href="/">
+          <img
+            src="/assets/android-chrome-192x192.png"
+            style="height: 40px; width: auto"
+            alt="buttonpng"
+            border="0"
+          />
+        </a>
+        <!--Btn activación-->
+        <button
+          class="navbar-toggler shadow-none border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Sidebar-->
+        <div
+          class="sidebar offcanvas offcanvas-start"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <!-- Sidebar Header -->
+          <div class="offcanvas-header text-white border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Yisus</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white shadow-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Sidebar Body -->
+          <div class="offcanvas-body">
+            <ul
+              class="navbar-nav align-items-center fs-6 flex-grow-1 pe-3"
+              style="text-align:center;"
+            >
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  aria-current="page"
+                  href="/infoGeneral"
+                >Info General</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosAceites"
+                >Datos Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link active"
+                  href="/datosGrasas"
+                >Datos Grasas</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosOtros"
+                >Datos Otros</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/iconos"
+                >Iconos</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/presentaciones"
+                >Presentaciones</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialAceites"
+                >Especial Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialGrasas"
+                >Especial Grasas</a>
+              </li> <li class="nav-item mx-2">
+                {{!-- {{#if login}} --}}
+                  <a 
+                  href="logout"
+                  style="font-weight: bold;"
+                  class="ml-2 btn btn-outline-danger"
+                  >Logout
+                  </a>
+                {{!-- {{/if}} --}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!--Card-->
+    <div class="card">
+
+      <div class="row">
+
+        <div class="col-1 mt-2 ms-3">
+          <input
+            type="button"
+            value="Regresar"
+            onclick="location.href='/datosGrasas'"
+            class="btn btn-primary d-flex justify-content-start"
+          />
+        </div>
+
+        <div class="col-10">
+          <h1
+            class="d-flex justify-content-center mt-2"
+            style="font-size: 30px; font-family: 'Pier_Sans_Bold'; color:white; text-shadow: 0 0 4px black"
+          >
+            DATOS GRASAS</h1>
+        </div>
+
+        <div class="col-1"></div>
+
+      </div>
+      <br />
+
+      <form action="/datosGrasasPost" method="POST" class="">
+
+        <div class="row">
+
+          <div class="col-4">
+
+            <h5 class="h5modal colorTexto">Hoja Técnica</h5>
+            <select
+              id="textareaPK"
+              name="textareaPK"
+              class="form-select"
+              required
+            >
+              {{#each data}}
+                <option
+                  value="{{this.PK_HojaTecnica}}"
+                >{{this.PK_HojaTecnica}}</option>
+              {{/each}}
+            </select>
+            <br />
+
+            <h5 class="h5modal colorTexto">Aceite Base</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba1"
+              name="textareaPrueba1"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 26</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba26"
+              name="textareaPrueba26"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 39</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba39"
+              name="textareaPrueba39"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 42</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba42"
+              name="textareaPrueba42"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 45</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba45"
+              name="textareaPrueba45"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 48</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba48"
+              name="textareaPrueba48"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 51</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba51"
+              name="textareaPrueba51"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 54</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba54"
+              name="textareaPrueba54"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 57</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba57"
+              name="textareaPrueba57"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 60</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba60"
+              name="textareaPrueba60"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 63</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba63"
+              name="textareaPrueba63"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+          </div>
+
+          <div class="col-4">
+
+            <h5 class="h5modal colorTexto">Código</h5>
+            <input
+              autocomplete="off"
+              id="textareaCodigo"
+              name="textareaCodigo"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 19</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba19"
+              name="textareaPrueba19"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 37</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba37"
+              name="textareaPrueba37"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 40</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba40"
+              name="textareaPrueba40"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 43</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba43"
+              name="textareaPrueba43"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 46</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba46"
+              name="textareaPrueba46"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 49</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba49"
+              name="textareaPrueba49"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 52</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba52"
+              name="textareaPrueba52"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 55</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba55"
+              name="textareaPrueba55"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 58</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba58"
+              name="textareaPrueba58"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 61</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba61"
+              name="textareaPrueba61"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 64</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba64"
+              name="textareaPrueba64"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+          </div>
+
+          <div class="col-4">
+
+            <h5 class="h5modal colorTexto">Nombre</h5>
+            <input
+              autocomplete="off"
+              id="textareaNombre"
+              name="textareaNombre"
+              style="overflow:auto;"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 20</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba20"
+              name="textareaPrueba20"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 38</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba38"
+              name="textareaPrueba38"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 41</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba41"
+              name="textareaPrueba41"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 44</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba44"
+              name="textareaPrueba44"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 47</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba47"
+              name="textareaPrueba47"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 50</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba50"
+              name="textareaPrueba50"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 53</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba53"
+              name="textareaPrueba53"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 56</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba56"
+              name="textareaPrueba56"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 59</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba59"
+              name="textareaPrueba59"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+            <h5 class="h5modal colorTexto">Prueba 62</h5>
+            <input
+              autocomplete="off"
+              id="textareaPrueba62"
+              name="textareaPrueba62"
+              style="overflow:auto"
+              class="form-control"
+            />
+            <br />
+
+          </div>
+
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button
+            type="submit"
+            id="btnAgregar"
+            class="btn btn-success me-3 mb-2"
+          >Agregar</button>
+        </div>
+
+      </form>
+
+    </div>
+
+    <!--JS de bootstrap-->
+    <script src="/bootstrap/bootstrap.js"></script>
+      
+
+  </body>
+</html>

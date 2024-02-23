@@ -1,0 +1,408 @@
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" />
+    <!--CSS de bootstrap-->
+    <link rel="stylesheet" href="/bootstrap/bootstrap.css" />
+    <!--CSS estilo de la página-->
+    <link rel="stylesheet" href="/css/styleAgregar.css" />
+    {{! CSS fonts }}
+    <link rel="stylesheet" href="/css/fonts.css" />
+  </head>
+
+  <body>
+
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <div class="container">
+        <!--Logo-->
+        <a class="navbar-brand fs-4" href="/">Yisus</a>
+        <a class="navbar-brand fs-4" href="/">
+          <img
+            src="/assets/android-chrome-192x192.png"
+            style="height: 40px; width: auto"
+            alt="buttonpng"
+            border="0"
+          />
+        </a>
+        <!--Btn activación-->
+        <button
+          class="navbar-toggler shadow-none border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Sidebar-->
+        <div
+          class="sidebar offcanvas offcanvas-start"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <!-- Sidebar Header -->
+          <div class="offcanvas-header text-white border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Yisus</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white shadow-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Sidebar Body -->
+          <div class="offcanvas-body">
+            <ul
+              class="navbar-nav align-items-center fs-6 flex-grow-1 pe-3"
+              style="text-align:center;"
+            >
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  aria-current="page"
+                  href="/infoGeneral"
+                >Info General</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosAceites"
+                >Datos Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosGrasas"
+                >Datos Grasas</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosOtros"
+                >Datos Otros</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/iconos"
+                >Iconos</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/presentaciones"
+                >Presentaciones</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialAceites"
+                >Especial Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialGrasas"
+                >Especial Grasas</a>
+              </li> <li class="nav-item mx-2">
+                {{!-- {{#if login}} --}}
+                  <a 
+                  href="logout"
+                  style="font-weight: bold;"
+                  class="ml-2 btn btn-outline-danger"
+                  >Logout
+                  </a>
+                {{!-- {{/if}} --}}
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="card cardTabla">
+
+      <div class="row">
+        <div class="col-3">
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="window.location.href='/'"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-arrow-left-square-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"
+              />
+            </svg>
+            Atrás
+          </button>
+        </div>
+
+        <div class="col-6 d-flex justify-content-center">
+          <h1
+            class="mt-2 mb-4"
+            style="font-size: 30px; font-family: 'Pier_Sans_Bold'; color:white; text-shadow: 0 0 4px black"
+          >Editar Pruebas
+          </h1>
+        </div>
+
+        <div class="col-3"></div>
+      </div>
+
+      <br />
+
+      <form action="/editarMasivoPost" method="POST">
+        <div class="row">
+          <div class="col-3">
+            <h5 class="h5modal h5color">Hoja Técnica</h5>
+            <select
+              id="agregarPK"
+              name="agregarPK"
+              class="form-select"
+              required
+            >
+              {{#each data}}
+                <option
+                  value="{{this.PK_HojaTecnica}}"
+                >{{this.PK_HojaTecnica}}</option>
+              {{/each}}
+            </select>
+            <br />
+          </div>
+
+          <div class="col-3">
+            <h5 class="h5modal h5color">Categoría</h5>
+            <select
+              required
+              id="agregarCategoria"
+              name="agregarCategoria"
+              class="form-select"
+            >
+              <option hidden selected value="">Selecciona una opción</option>
+              <option value="Aceite">Aceite</option>
+              <option value="Grasa">Grasa</option>
+              <option value="Laca">Laca</option>
+              <option value="Limpiador">Limpiador</option>
+              <option value="Pasta">Pasta</option>
+              <option value="Varios">Varios</option>
+            </select>
+          </div>
+
+          <div class="col-3">
+            <h5 class="h5modal h5color">Prueba</h5>
+            <select
+              id="pruebaForm"
+              name="pruebaForm"
+              class="form-select"
+              required
+            >
+              <option value="prueba1">Aceite Base</option>
+              <option value="prueba2">Prueba 2</option>
+              <option value="prueba3">Prueba 3</option>
+              <option value="prueba4">Prueba 4</option>
+              <option value="prueba5">Prueba 5</option>
+              <option value="prueba6">Prueba 6</option>
+              <option value="prueba7">Prueba 7</option>
+              <option value="prueba8">Prueba 8</option>
+              <option value="prueba9">Prueba 9</option>
+              <option value="prueba10">Prueba 10</option>
+              <option value="prueba11">Prueba 11</option>
+              <option value="prueba12">Prueba 12</option>
+              <option value="prueba13">Prueba 13</option>
+              <option value="prueba14">Prueba 14</option>
+              <option value="prueba15">Prueba 15</option>
+              <option value="prueba16">Prueba 16</option>
+              <option value="prueba17">Prueba 17</option>
+              <option value="prueba18">Prueba 18</option>
+              <option value="prueba19">Prueba 19</option>
+              <option value="prueba20">Prueba 20</option>
+              <option value="prueba21">Prueba 21</option>
+              <option value="prueba22">Prueba 22</option>
+              <option value="prueba23">Prueba 23</option>
+              <option value="prueba24">Prueba 24</option>
+              <option value="prueba25">Prueba 25</option>
+              <option value="prueba26">Prueba 26</option>
+              <option value="prueba27">Prueba 27</option>
+              <option value="prueba28">Prueba 28</option>
+              <option value="prueba29">Prueba 29</option>
+              <option value="prueba30">Prueba 30</option>
+              <option value="prueba31">Prueba 31</option>
+              <option value="prueba32">Prueba 32</option>
+              <option value="prueba33">Prueba 33</option>
+              <option value="prueba34">Prueba 34</option>
+              <option value="prueba35">Prueba 35</option>
+              <option value="prueba36">Prueba 36</option>
+              <option value="prueba37">Prueba 37</option>
+              <option value="prueba38">Prueba 38</option>
+              <option value="prueba39">Prueba 39</option>
+              <option value="prueba40">Prueba 40</option>
+              <option value="prueba41">Prueba 41</option>
+              <option value="prueba42">Prueba 42</option>
+              <option value="prueba43">Prueba 43</option>
+              <option value="prueba44">Prueba 44</option>
+              <option value="prueba45">Prueba 45</option>
+              <option value="prueba46">Prueba 46</option>
+              <option value="prueba47">Prueba 47</option>
+              <option value="prueba48">Prueba 48</option>
+              <option value="prueba49">Prueba 49</option>
+              <option value="prueba50">Prueba 50</option>
+              <option value="prueba51">Prueba 51</option>
+              <option value="prueba52">Prueba 52</option>
+              <option value="prueba53">Prueba 53</option>
+              <option value="prueba54">Prueba 54</option>
+              <option value="prueba55">Prueba 55</option>
+              <option value="prueba56">Prueba 56</option>
+              <option value="prueba57">Prueba 57</option>
+              <option value="prueba58">Prueba 58</option>
+              <option value="prueba59">Prueba 59</option>
+              <option value="prueba60">Prueba 60</option>
+              <option value="prueba61">Prueba 61</option>
+              <option value="prueba62">Prueba 62</option>
+              <option value="prueba63">Prueba 63</option>
+              <option value="prueba64">Prueba 64</option>
+              <option value="prueba65">Prueba 65</option>
+              <option value="prueba66">Prueba 66</option>
+              <option value="prueba67">Prueba 67</option>
+              <option value="prueba68">Prueba 68</option>
+            </select>
+          </div>
+
+          <div class="col-3">
+            <h5 class="h5modal h5color">Nuevo Dato</h5>
+            <input
+              autocomplete="off"
+              type="text"
+              class="form-control"
+              id="nuevoDato"
+              name="nuevoDato"
+            />
+          </div>
+
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button
+            type="submit"
+            id="btnAgregar"
+            class="btn btn-success me-3 mb-5"
+          >&nbsp;&nbsp;&nbsp;Editar&nbsp;&nbsp;&nbsp;</button>
+        </div>
+      </form>
+
+      <form action="/editarVersionPost" method="POST">
+        <h1
+          class="mt-5 mb-2"
+          style="text-align: center; font-size: 17px; font-family: 'Pier_Sans_Bold'; color:red; text-shadow: 0 0 4px white"
+        >Actualizar Versión de TODAS las Hojas
+        </h1>
+
+        <div class="row d-flex justify-content-center mt-3">
+          <div class="col-2 d-flex">
+            <h5 class="h5color align-items-center">Nueva Versión</h5>
+          </div>
+
+          <div class="col-2">
+            <input
+              autocomplete="off"
+              type="text"
+              class="form-control"
+              id="nuevaVersion"
+              name="nuevaVersion"
+            />
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+          <button
+            id="btnActualizarVersionModal"
+            type="button"
+            class="btn btn-danger me-3 mb-2"
+            data-bs-toggle="modal"
+            data-bs-target="#modalVersion"
+          >Actualizar</button>
+        </div>
+
+      </form>
+
+    </div>
+
+    <!-- MODAL VERSION -->
+    <div
+      class="modal fade"
+      id="modalVersion"
+      tabindex="-1"
+      aria-labelledby="versionModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form action="/editarVersionPost" method="POST">
+            <input
+              type="hidden"
+              id="nuevaVersionModal"
+              name="nuevaVersion"
+              value=""
+            />
+            <!-- Agrega un método POST y la ruta que corresponda a tu aplicación -->
+            <div class="modal-header">
+              <h1
+                class="modal-title fs-5"
+                id="versionModalLabel"
+              >Actualizar</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <h5 id="mensajeModal">¿Estás seguro de actualizar en TODAS las
+                Hojas la versión a
+                <span id="valorNuevaVersion"></span>?
+              </h5>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-danger">ACTUALIZAR</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!--JS de bootstrap-->
+    <script src="/bootstrap/bootstrap.js"></script>
+      
+    {{! Pasar dato de input a modal }}
+    <script src="/js/modalActualizarVersion.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,329 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Pier_Sans_Reg";
+}
+
+body {
+  background-image: url(../assets/silhouette-175970.jpg);
+  /* https://pixabay.com/photos/silhouette-landscape-dawn-dusk-175970 free license*/
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .sidebar {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+  }
+}
+/* Color de navbar, card y containers de tabla */
+.card {
+  margin-top: 0px;
+  margin-bottom: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background: #fff5;
+  backdrop-filter: blur(7px);
+}
+
+/*  TABLA ESTILOS SIN BOOTSTRAP   */
+table {
+  font-size: 14px;
+}
+/* Hace que se pinte la fila al pasar el mouse, es necesario así porque el table ya tiene color por table de BS */
+table tbody tr:hover td {
+  background-color: rgb(185, 185, 185);
+}
+/* Pintar th de la tabla*/
+#tablaDatos th{
+  background-color: rgba(212, 7, 7, 0.384) ;
+  color: white;
+  text-shadow: 0 0 6px black;
+  height: 45px;
+  vertical-align: middle;
+  /* text-align: center; */
+}
+/* Estilos para filas pares */
+.fila-par td {
+  background-color: rgb(218, 218, 218);
+}
+/* Estilos para filas impares */
+.fila-impar td {
+  background-color: white;
+}
+/* Color buscador y select table */
+.inputBuscar{
+  background: #fff5;
+  backdrop-filter: blur(7px);
+}
+/* Definir la regla de estilo personalizada para cambiar el color de fondo */
+.label-busqueda{
+  background-color: transparent; /* Cambia "red" al color deseado */
+  border-color: transparent;
+  color: white; /* Cambia "white" al color del texto deseado */
+  font-weight: bold;
+}
+/* label transparente mostrar registros */
+.label-select{
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+  font-weight: bold;
+}
+/*    MODAL    */
+/* Estilos para el encabezado del modal */
+.modal-header {
+  padding: 8px;
+  background-color: rgba(212, 7, 7, 0.7) !important; 
+}
+/* Estilos para el pie del modal */
+.modal-footer {
+  background-color: #ffffff; /* Color de fondo del pie del modal */
+}
+/* Estilos generales para las etiquetas de formulario */
+.custom-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.custom-form-2 {  /*Para modal editar solamente*/
+  max-width: 700px;
+  margin: 0 auto;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group h5 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+/*textarea*/
+#autoresizing {
+  display: block;
+  overflow: hidden;
+  resize: none;
+}
+.modal-body textarea {
+  font-family: "OpenSans-Regular";
+}
+/* ocultar textarea, una vez ya se haya redimencionado se mostrara con JS */
+.hide-textarea {
+  /* visibility: hidden; */
+  transition: 1s ease-in-out;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+/* ocultar h5 para que no se muestre antes que el textarea que pasa por un js primero, una vez ya se haya redimencionado se mostrara con JS */
+.hide-h5 {
+  /* visibility: hidden; */
+  transition: 1s ease-in-out;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+/*    PAGINACION    */
+/* Estilos generales para los botones de paginación 1,2,3,etc */
+.custom-page-link {
+  /* display: inline-block; */
+  width: 30px;
+  height: 40px;
+  margin: 2px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  color: #333; /*Color numeros*/
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.custom-page-link:hover {
+  background-color: #cfcfcf;
+}
+
+/* Estilos para el botón de página activa */
+.paginacion-active {
+  /* display: inline-block; */
+  width: 30px;
+  height: 40px;
+  margin: 2px;
+  font-size: 14px;
+  border: 1px solid rgba(212, 7, 7, 0.7); /* Color de borde para botón activo */
+  border-radius: 4px;
+  background-color: rgba(212, 7, 7, 0.7); /* Color de fondo para botón activo */
+  color: #fff; /* Color de texto para botón activo */
+}
+/* Estilos para el ellipsis */
+.paginacion-ellipsis {
+  margin: 2px;
+}
+/* Estilos para los botones de navegación (Anterior/Siguiente) */
+.custom-navigation-button {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 2px;
+  font-size: 14px;
+  border: 1px solid rgba(212, 7, 7);
+  border-radius: 4px;
+  background-color: rgba(212, 7, 7, 0.5); /*Anterior y siguiente sin seleccionar*/
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.custom-navigation-button:hover {
+  background-color: rgba(212, 7, 7, 0.8); /* Color más oscuro al hacer hover */
+}
+.custom-navigation-button:disabled {
+  cursor: default;
+  background-color: #e2e2e2;
+  color: #a5a5a5;
+  border: 1px solid rgb(136, 136, 136);
+}
+
+/* PANEL ICONOS */
+#panelIconos .body-iconos div label {
+  display: inline-block;
+  cursor: default; /* Cambiar el cursor para el label */
+}
+
+#verdeSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #0fb800;
+  padding: 10px 15px;
+  color: rgb(0, 0, 0);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#azulSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #00b3c0;
+  padding: 10px 15px;
+  color: rgb(0, 0, 0);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#blancoSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #b9b9b9;
+  padding: 10px 15px;
+  color: rgb(0, 0, 0);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#rojoSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #b80000;
+  padding: 10px 15px;
+  color: rgb(192, 192, 192);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#negroSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #000000;
+  padding: 10px 15px;
+  color: rgb(192, 192, 192);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#panelIconos .body-iconos div label span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+#panelIconos .body-iconos div label input[type="checkbox"] {
+  display: none;
+}
+#panelIconos .body-iconos div label input[type="checkbox"]:checked ~ span {
+  background: #0416b4;
+  color: white;
+  box-shadow: 0 2px 20px #0416b4;
+}
+
+/* PRESENTACIONES  */
+.modal-body.body-presentaciones div span {
+  cursor: pointer;
+}
+.modal-body.body-presentaciones div label input[type="checkbox"] {
+  display: none;
+}
+.modal-body.body-presentaciones div label span {
+  position: relative;
+  display: inline-block;
+  background: #666666;
+  padding: 10px 20px;
+  color: rgb(184, 184, 184);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+.modal-body.body-presentaciones div label span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+.modal-body.body-presentaciones
+  div
+  label
+  input[type="checkbox"]:checked
+  ~ span {
+  background: #0416b4;
+  color: white;
+  box-shadow: 0 2px 20px #0416b4;
+}

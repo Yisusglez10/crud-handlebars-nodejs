@@ -1,0 +1,46 @@
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>ERROR 404</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" />
+    <!--CSS de bootstrap-->
+    <link rel="stylesheet" href="/bootstrap/bootstrap.css" />
+     
+    <!--CSS estilo de la página-->
+    <link rel="stylesheet" href="/css/styleMenu.css" />
+    {{! CSS fonts }}
+    <link rel="stylesheet" href="/css/fonts.css" />
+  </head>
+
+  <div class="card cardTabla mt-3">
+
+    <div
+      class="container d-flex align-items-center flex-column justify-content-center"
+    >
+      <a class="navbar-brand fs-4" href="/">Yisus</a>
+      <a class="navbar-brand fs-4" href="/">
+        <img
+          class="mt-2 mb-2"
+          src="/assets/android-chrome-192x192.png"
+          style="height: 40px; width: auto"
+          alt="buttonpng"
+          border="0"
+        />
+      </a>
+      <img
+        src="/assets/error.gif"
+        alt=""
+        width="900"
+        height="450"
+        class="mb-3"
+      />
+      <p
+        class="text-center"
+        style="font-weight: bold; font-size: 20px; color: white;"
+      >{{message}}</p>
+    </div>
+
+  </div>
+
+</html>

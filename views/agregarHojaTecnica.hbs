@@ -1,0 +1,2522 @@
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Agregar HT</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" />
+    <!--CSS de bootstrap-->
+    <link rel="stylesheet" href="/bootstrap/bootstrap.css" />
+     
+    <!--CSS estilo de la página-->
+    <link rel="stylesheet" href="/css/styleAgregarHT.css" />
+    {{! CSS fonts }}
+    <link rel="stylesheet" href="/css/fonts.css" />
+  </head>
+
+  <body>
+
+    {{! MODAL DUPLICADO }}
+    <div
+      class="modal fade"
+      id="modalDuplicado"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p id="modalMessage">Mensaje del modal</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{! MODAL EXITO }}
+    <div
+      class="modal fade"
+      id="modalExitoAdd"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Éxito</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p id="modalExitoMessage">Mensaje del modal</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+            >Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inicio Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <div class="container">
+        <!--Logo-->
+        <a class="navbar-brand fs-4" href="/">Yisus</a>
+        <a class="navbar-brand fs-4" href="/">
+          <img
+            src="/assets/android-chrome-192x192.png"
+            style="height: 40px; width: auto"
+            alt="buttonpng"
+            border="0"
+          />
+        </a>
+        <!--Btn activación-->
+        <button
+          class="navbar-toggler shadow-none border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Sidebar-->
+        <div
+          class="sidebar offcanvas offcanvas-start"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <!-- Sidebar Header -->
+          <div class="offcanvas-header text-white border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Yisus</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white shadow-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Sidebar Body -->
+          <div class="offcanvas-body">
+            <ul
+              class="navbar-nav align-items-center fs-6 flex-grow-1 pe-3"
+              style="text-align:center;"
+            >
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  aria-current="page"
+                  href="/infoGeneral"
+                >Info General</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosAceites"
+                >Datos Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosGrasas"
+                >Datos Grasas</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosOtros"
+                >Datos Otros</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/iconos"
+                >Iconos</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/presentaciones"
+                >Presentaciones</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialAceites"
+                >Especial Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialGrasas"
+                >Especial Grasas</a>
+              </li> <li class="nav-item mx-2">
+                {{!-- {{#if login}} --}}
+                  <a 
+                  href="logout"
+                  style="font-weight: bold;"
+                  class="ml-2 btn btn-outline-danger"
+                  >Logout
+                  </a>
+                {{!-- {{/if}} --}}
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </nav>
+    {{! Fin navbar }}
+
+    {{! Inicio card }}
+    <div class="card cardTabla pb-3">
+
+      {{! Inicio row }}
+      <div class="row">
+        <div class="col-3">
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="window.location.href='/'"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-arrow-left-square-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"
+              />
+            </svg>
+            Atrás
+          </button>
+        </div>
+        <div class="col-6 d-flex justify-content-center">
+          <h1
+            class="mt-2"
+            style="font-size: 30px; font-family: 'Pier_Sans_Bold'; color:white; text-shadow: 0 0 4px black"
+          >Hoja Técnica
+          </h1>
+        </div>
+        <div class="col-3"></div>
+      </div>
+      {{! Fin Row }}
+
+      <!--Inicio FORM -->
+      {{! <form id="formAdd" name="formEnvio" enctype="multipart/form-data"> }}
+      <form id="formAdd" name="formEnvio">
+        {{! INICIO ACORDEON}}
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+
+          {{! CONTADOR DE INPUTS PARA duplicardivsDatosX.js }}
+          {{! Input contador DatosAceites }}
+          {{! <h5 type="text">Counter Aceites</h5> }}
+          <input
+            type="hidden"
+            id="divCounterInput"
+            name="divCounter"
+            value=""
+          />
+
+          {{! Input contador DatosGrasas }}
+          {{! <h5 type="text">Counter Grasas</h5> }}
+          <input
+            type="hidden"
+            id="divCounterInputgGrasas"
+            name="divCounterGrasas"
+            value=""
+          />
+
+          {{! Input contador Datos Otros }}
+          {{! <h5 type="text">Counter Otros</h5> }}
+          <input
+            type="hidden"
+            id="divCounterInputOtros"
+            name="divCounterOtros"
+            value=""
+          />
+          {{! FIN CONTADORES }}
+
+          {{! Inicio acordeon InfoGral }}
+          <div class="accordion-item bg-transparent">
+
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button bg-white"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"
+              >
+                Información General
+              </button>
+            </h2>
+
+            <div
+              id="panelsStayOpen-collapseOne"
+              class="accordion-collapse collapse show"
+            >
+              <div class="accordion-body">
+
+                {{! Inicio row Info General }}
+                <div class="row">
+                  <div class="col-1"></div>
+
+                  {{! Parte 1/2 formulario }}
+                  <div class="col-4 formularioTextArea">
+
+                    <h5 class="h5color mt-3">Hoja Técnica</h5>
+                    <textarea
+                      required
+                      id="agregarPK"
+                      name="agregarPK"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-pk mb-3"
+                      onkeyup="javascript:this.value=this.value.toUpperCase();"
+                    ></textarea>
+
+                    <h5 class="h5color">Categoría</h5>
+                    <select
+                      required
+                      id="agregarCategoria"
+                      name="agregarCategoria"
+                      class="form-select modal-categoria mb-3"
+                    >
+                      <option hidden selected value="">Selecciona una opción</option>
+                      <option value="Aceite">Aceite</option>
+                      <option value="Grasa">Grasa</option>
+                      <option value="Laca">Laca</option>
+                      <option value="Limpiador">Limpiador</option>
+                      <option value="Pasta">Pasta</option>
+                      <option value="Varios">Varios</option>
+                    </select>
+
+                    <h5 class="h5color">Nombre</h5>
+                    <textarea
+                      required
+                      id="agregarNombre"
+                      name="agregarNombre"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-nombre mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Subtitulo</h5>
+                    <textarea
+                      id="agregarSubtitulo"
+                      name="agregarSubtitulo"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-subtitulo mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Descripción</h5>
+                    <textarea
+                      id="agregarDescripcion"
+                      name="agregarDescripcion"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-descripcion mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Beneficios</h5>
+                    <textarea
+                      id="agregarBeneficios"
+                      name="agregarBeneficios"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-beneficios mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Aplicaciones</h5>
+                    <textarea
+                      id="agregarAplicaciones"
+                      name="agregarAplicaciones"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-aplicaciones mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Color</h5>
+                    <textarea
+                      id="agregarColor"
+                      name="agregarColor"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-color mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Textura</h5>
+                    <textarea
+                      id="agregarTextura"
+                      name="agregarTextura"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-textura mb-3"
+                    ></textarea>
+                  </div>
+                  {{! Fin formulario 1/2 textarea }}
+
+                  <div class="col-1"></div>
+
+                  {{! Parte 2/2 textarea }}
+                  <div class="col-4 formularioTextArea">
+
+                    <h5 class="h5color mt-3">Forma De aplicación</h5>
+                    <textarea
+                      id="agregarFormaAplicacion"
+                      name="agregarFormaAplicacion"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-forma mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Revisión</h5>
+                    <textarea
+                      id="agregarRevision"
+                      name="agregarRevision"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-revision mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Extra</h5>
+                    <textarea
+                      id="agregarExtra"
+                      name="agregarExtra"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-extra mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Propiedades físicas</h5>
+                    <textarea
+                      id="agregarPropiedadesFisicas"
+                      name="agregarPropiedadesFisicas"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-propiedades mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Recomendaciones de mezcla</h5>
+                    <textarea
+                      id="agregarRecomendacionesMezcla"
+                      name="agregarRecomendacionesMezcla"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-recomendaciones mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Preparación del compuesto</h5>
+                    <textarea
+                      id="agregarPreparacionCompuesto"
+                      name="agregarPreparacionCompuesto"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-compuesto mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Características</h5>
+                    <textarea
+                      id="agregarCaracteristicas"
+                      name="agregarCaracteristicas"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-caracteristicas mb-3"
+                    ></textarea>
+
+                    <h5 class="h5color">Preparación de superficie</h5>
+                    <textarea
+                      id="agregarPreparacionSuperficie"
+                      name="agregarPreparacionSuperficie"
+                      style="overflow:hidden;"
+                      class="dynamic-textarea form-control modal-superficie mb-3"
+                    ></textarea>
+
+                  </div>
+                  {{! Fin formulario 2/2 textarea }}
+
+                  <div class="col-2"></div>
+
+                </div>
+                <!--Fin Row-->
+
+              </div>
+              {{! Acordeon body }}
+            </div>
+            {{! Fin panelsStayOpen }}
+          </div>
+          {{! Fin acordeon InfoGral }}
+
+          {{! Inicio acordeon Datos Aceites }}
+          <div class="accordion-item bg-transparent d-none acordeonAceites">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelDatosAceites"
+                aria-expanded="false"
+                aria-controls="panelDatosAceites"
+              >
+                Datos Aceites
+              </button>
+            </h2>
+            <div id="panelDatosAceites" class="accordion-collapse collapse">
+              <div class="accordion-body">
+
+                <button
+                  id="agregarDiv"
+                  class="btn btn-primary"
+                  type="button"
+                >Agregar Dato</button>
+                <button
+                  id="borrarDiv"
+                  class="btn btn-danger"
+                  type="button"
+                >Eliminar Último Dato</button>
+
+                <div class="row duplicarRow">
+
+                  {{! 1 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <h5 class="h5datosAceite mt-3">IVP</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Aceite Base</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Prueba 2</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Prueba 3</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Prueba 4</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Prueba 5</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Prueba 6</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Prueba 7</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Prueba 8</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Prueba 9</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-3">Prueba 10</h5>
+                    </div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <textarea
+                        id="agregarIVP_DA"
+                        name="agregarIVP_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-ivp-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar1_DA"
+                        name="agregar1_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar2_DA"
+                        name="agregar2_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-2-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar3_DA"
+                        name="agregar3_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-3-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar4_DA"
+                        name="agregar4_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-4-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar5_DA"
+                        name="agregar5_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-5-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar6_DA"
+                        name="agregar6_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-6-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar7_DA"
+                        name="agregar7_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-7-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar8_DA"
+                        name="agregar8_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-8-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar9_DA"
+                        name="agregar9_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-9-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar10_DA"
+                        name="agregar10_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-10-da mb-3"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  {{! 2 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <h5 class="h5datosAceite mt-1">Nombre</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 11</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 12</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 13</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 14</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 15</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 16</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 17</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 18</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 19</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 20</h5>
+                    </div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <textarea
+                        id="agregarNombre_DA"
+                        name="agregarNombre_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-nombre-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar11_DA"
+                        name="agregar11_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar12_DA"
+                        name="agregar12_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-12-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar13_DA"
+                        name="agregar13_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-13-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar14_DA"
+                        name="agregar14_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-14-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar15_DA"
+                        name="agregar15_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-15-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar16_DA"
+                        name="agregar16_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-16-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar17_DA"
+                        name="agregar17_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-17-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar18_DA"
+                        name="agregar18_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-18-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar19_DA"
+                        name="agregar19_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-19-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar20_DA"
+                        name="agregar20_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-20-da mb-3"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  {{! 3 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <h5 class="h5datosAceite mt-1"></h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 21</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 22</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 23</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 24</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 25</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 26</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 27</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 28</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 29</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 30</h5>
+                    </div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar21_DA"
+                        name="agregar21_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar22_DA"
+                        name="agregar22_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-22-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar23_DA"
+                        name="agregar23_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-23-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar24_DA"
+                        name="agregar24_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-24-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar25_DA"
+                        name="agregar25_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-25-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar26_DA"
+                        name="agregar26_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-26-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar27_DA"
+                        name="agregar27_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-27-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar28_DA"
+                        name="agregar28_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-28-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar29_DA"
+                        name="agregar29_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-29-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar30_DA"
+                        name="agregar30_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-30-da mb-3"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  {{! 4 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <h5 class="h5datosAceite mt-1"></h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 31</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 32</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 33</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 34</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 35</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 36</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 37</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 38</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 39</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 43</h5>
+                    </div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar31_DA"
+                        name="agregar31_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-31-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar32_DA"
+                        name="agregar32_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-32-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar33_DA"
+                        name="agregar33_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-33-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar34_DA"
+                        name="agregar34_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-34-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar35_DA"
+                        name="agregar35_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-35-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar36_DA"
+                        name="agregar36_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-36-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar37_DA"
+                        name="agregar37_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-37-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar38_DA"
+                        name="agregar38_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-38-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar39_DA"
+                        name="agregar39_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-39-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar43_DA"
+                        name="agregar43_DA"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-43-da mb-3"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                </div>
+                {{! fin Row }}
+
+                <div id="contenedorDivs" class="">
+                  <!-- Aquí se agregarán los divs duplicados -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {{! Fin acordeon Datos Aceites }}
+
+          {{! Inicio acordeon Datos Grasas }}
+          <div class="accordion-item bg-transparent d-none acordeonGrasas">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelDatosGrasas"
+                aria-expanded="false"
+                aria-controls="panelDatosGrasas"
+              >
+                Datos Grasas
+              </button>
+            </h2>
+            <div id="panelDatosGrasas" class="accordion-collapse collapse">
+              <div class="accordion-body">
+
+                <button
+                  id="agregarDivDatosGrasas"
+                  class="btn btn-primary"
+                  type="button"
+                >Agregar Dato</button>
+                <button
+                  id="borrarDivDatosGrasas"
+                  class="btn btn-danger"
+                  type="button"
+                >Eliminar Último Dato</button>
+
+                {{! Row a duplicar  }}
+                <div class="row duplicarRowDatosGrasas">
+
+                  {{! 1 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                      <h5 class="h5datosGrasas mt-1">IVP</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Aceite Base</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 19</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 20</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 26</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 37</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 38</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 39</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 40</h5>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                      <textarea
+                        id="grasasAgregarIVP_DG"
+                        name="grasasAgregarIVP_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control grasa-modal-ivp-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar1_DG"
+                        name="agregar1_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar19_DG"
+                        name="agregar19_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar20_DG"
+                        name="agregar20_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar26_DG"
+                        name="agregar26_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar37_DG"
+                        name="agregar37_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar38_DG"
+                        name="agregar38_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar39_DG"
+                        name="agregar39_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar40_DG"
+                        name="agregar40_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+
+                  {{! 2 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                      <h5 class="h5datosGrasas mt-1">Nombre</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 41</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 42</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 43</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 44</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 45</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 46</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 47</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 48</h5>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                      <textarea
+                        id="grasasAgregarNombre_DG"
+                        name="grasasAgregarNombre_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control grasa-modal-nombre-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar41_DG"
+                        name="agregar41_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar42_DG"
+                        name="agregar42_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar43_DG"
+                        name="agregar43_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar44_DG"
+                        name="agregar44_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar45_DG"
+                        name="agregar45_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar46_DG"
+                        name="agregar46_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar47_DG"
+                        name="agregar47_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar48_DG"
+                        name="agregar48_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+
+                  {{! 3 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-3"></div>
+
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 49</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 50</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 51</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 52</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 53</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 54</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 55</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 56</h5>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-3"></div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar49_DG"
+                        name="agregar49_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar50_DG"
+                        name="agregar50_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar51_DG"
+                        name="agregar51_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar52_DG"
+                        name="agregar52_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar53_DG"
+                        name="agregar53_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar54_DG"
+                        name="agregar54_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar55_DG"
+                        name="agregar55_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar56_DG"
+                        name="agregar56_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+
+                  {{! 4 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-3"></div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 57</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 58</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 59</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 60</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 61</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 62</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 63</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 64</h5>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-3"></div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar57_DG"
+                        name="agregar57_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar58_DG"
+                        name="agregar58_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar59_DG"
+                        name="agregar59_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar60_DG"
+                        name="agregar60_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar61_DG"
+                        name="agregar61_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar62_DG"
+                        name="agregar62_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar63_DG"
+                        name="agregar63_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar64_DG"
+                        name="agregar64_DG"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+
+                </div>
+                {{! Fin Row }}
+
+                <div id="contenedorDivsDatosGrasas" class="">
+                  <!-- Aquí se agregarán los divs duplicados -->
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          {{! Fin acordeon Datos Grasas }}
+
+          {{! Inicio acordeon Datos Otros }}
+          <div class="accordion-item bg-transparent d-none acordeonOtros">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelDatosOtros"
+                aria-expanded="false"
+                aria-controls="panelDatosOtros"
+              >
+                Datos Otros
+              </button>
+            </h2>
+            <div id="panelDatosOtros" class="accordion-collapse collapse">
+              <div class="accordion-body">
+
+                <button
+                  id="agregarDivDatosOtros"
+                  class="btn btn-primary"
+                  type="button"
+                >Agregar Dato</button>
+                <button
+                  id="borrarDivDatosOtros"
+                  class="btn btn-danger"
+                  type="button"
+                >Eliminar Último Dato</button>
+
+                {{! Row a duplicar  }}
+                <div class="row duplicarRowDatosOtros">
+
+                  {{! 1 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <h5 class="h5datosGrasas mt-1">IVP</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosGrasas mt-1">Prueba 2</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 3</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 4</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 5</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 7</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 9</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 19</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 20</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 26</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 30</h5>
+                    </div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <textarea
+                        id="agregarIVP_DO"
+                        name="agregarIVP_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control grasa-modal-ivp-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar2_DO"
+                        name="agregar2_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar3_DO"
+                        name="agregar3_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar4_DO"
+                        name="agregar4_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar5_DO"
+                        name="agregar5_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar7_DO"
+                        name="agregar7_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar9_DO"
+                        name="agregar9_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar19_DO"
+                        name="agregar19_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar20_DO"
+                        name="agregar20_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar26_DO"
+                        name="agregar26_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar30_DO"
+                        name="agregar30_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-1-da mb-3"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  {{! 2 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <h5 class="h5datosGrasas mt-1">Nombre</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosGrasas mt-1">Prueba 31</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 32</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 33</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 34</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 36</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 37</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 38</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 39</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 41</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 43</h5>
+                    </div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                      <textarea
+                        id="agregarNombre_DO"
+                        name="agregarNombre_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control grasa-modal-nombre-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar31_DO"
+                        name="agregar31_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar32_DO"
+                        name="agregar32_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar33_DO"
+                        name="agregar33_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar34_DO"
+                        name="agregar34_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar36_DO"
+                        name="agregar36_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar37_DO"
+                        name="agregar37_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar38_DO"
+                        name="agregar38_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar39_DO"
+                        name="agregar39_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar41_DO"
+                        name="agregar41_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar43_DO"
+                        name="agregar43_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-11-da mb-3"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  {{! 3 linea }}
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosGrasas mt-1">Prueba 44</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 46</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 49</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 51</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 54</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 63</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 65</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 66</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 67</h5>
+                    </div>
+                    <div class="col-1">
+                      <h5 class="h5datosAceite mt-1">Prueba 68</h5>
+                    </div>
+                  </div>
+                  <div class="row d-flex align-items-center">
+                    <div class="col-2"></div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar44_DO"
+                        name="agregar44_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar46_DO"
+                        name="agregar46_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar49_DO"
+                        name="agregar49_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar51_DO"
+                        name="agregar51_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar54_DO"
+                        name="agregar54_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar63_DO"
+                        name="agregar63_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar65_DO"
+                        name="agregar65_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar66_DO"
+                        name="agregar66_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar67_DO"
+                        name="agregar67_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                    <div class="col-1">
+                      <textarea
+                        id="agregar68_DO"
+                        name="agregar68_DO"
+                        style="overflow:hidden;"
+                        class="dynamic-textarea form-control modal-21-da mb-3"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                </div>
+                {{! Fin Row }}
+
+                <div id="contenedorDivsDatosOtros" class="">
+                  <!-- Aquí se agregarán los divs duplicados -->
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {{! Fin acordeon Datos Otros }}
+
+          {{! Inicio acordeon Iconos }}
+          <div class="accordion-item bg-transparent acordeonIconos">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelIconos"
+                aria-expanded="false"
+                aria-controls="panelIconos"
+                type=""
+              >
+                Iconos
+              </button>
+            </h2>
+            <div id="panelIconos" class="accordion-collapse collapse">
+              <div class="accordion-body body-iconos container text-center">
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <!--Hacer chexkbox value 1 si esta seleccionado y 0 si no?  -->
+                      <input type="checkbox" name="bio" value="1" />
+                      <span id="verdeSpan">BIO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="nsf" value="1" />
+                      <span id="azulSpan">NSF</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="iso21469" value="1" />
+                      <span id="azulSpan">ISO21469</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="halal" value="1" />
+                      <span id="blancoSpan">HALAL</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="kosher" value="1" />
+                      <span id="blancoSpan">KOSHER</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="rodamientos" value="1" />
+                      <span id="rojoSpan">RODAMIENTOS</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input type="hidden" name="" value="0" />
+                      <input
+                        type="checkbox"
+                        name="sistemasHidraulicos"
+                        value="1"
+                      />
+                      <span id="rojoSpan">SISTEMAS HIDRAULICOS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="turbinas" value="1" />
+                      <span id="rojoSpan">TURBINAS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="compresores" value="1" />
+                      <span id="rojoSpan">COMPRESORES</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="cajaEngranes" value="1" />
+                      <span id="rojoSpan">CAJA DE ENGRANES</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="engranes" value="1" />
+                      <span id="rojoSpan">ENGRANES</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="coronas" value="1" />
+                      <span id="rojoSpan">CORONAS</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="chumaceras" value="1" />
+                      <span id="rojoSpan">CHUMACERAS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="cojinetes" value="1" />
+                      <span id="rojoSpan">COJINETES</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="cadenas" value="1" />
+                      <span id="rojoSpan">CADENAS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="cables" value="1" />
+                      <span id="rojoSpan">CABLES</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="valvulas" value="1" />
+                      <span id="rojoSpan">VALVULAS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="coples" value="1" />
+                      <span id="rojoSpan">COPLES</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="antiaferrante" value="1" />
+                      <span id="rojoSpan">ANTIAFERRANTE</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="torno" value="1" />
+                      <span id="rojoSpan">TORNO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="deformacion" value="1" />
+                      <span id="rojoSpan">DEFORMACION</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="troquelado" value="1" />
+                      <span id="rojoSpan">TROQUELADO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="riel" value="1" />
+                      <span id="rojoSpan">RIEL</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="transportadora" value="1" />
+                      <span id="rojoSpan">TRANSPORTADORA</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="temperaturasExtremas"
+                        value="1"
+                      />
+                      <span id="blancoSpan">TEMPERATURAS EXTREMAS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="altasTemperaturas"
+                        value="1"
+                      />
+                      <span id="blancoSpan">ALTAS TEMPERATURAS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="bajasTemperaturas"
+                        value="1"
+                      />
+                      <span id="blancoSpan">BAJAS TEMPERATURAS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="altasCargas" value="1" />
+                      <span id="blancoSpan">ALTAS CARGAS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="altasVelocidades"
+                        value="1"
+                      />
+                      <span id="blancoSpan">ALTAS VELOCIDADES</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="altaContaminacion"
+                        value="1"
+                      />
+                      <span id="blancoSpan">ALTA CONTAMINACIÓN</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="lavadoAgua" value="1" />
+                      <span id="blancoSpan">Prueba 50</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="ambientesQuimicos"
+                        value="1"
+                      />
+                      <span id="blancoSpan">AMBIENTES QUIMICOS</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="vibracionImpacto"
+                        value="1"
+                      />
+                      <span id="blancoSpan">VIBRACIÓN E IMPACTO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="compatible" value="1" />
+                      <span id="blancoSpan">COMPATIBLE</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="periodoLubricacion"
+                        value="1"
+                      />
+                      <span id="blancoSpan">PERIODO DE LUBRICACIÓN</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="barrenado" value="1" />
+                      <span id="blancoSpan">BARRENADO</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="barrenadoProfundo"
+                        value="1"
+                      />
+                      <span id="blancoSpan">BARRENADO PROFUNDO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="embutidoProfundo"
+                        value="1"
+                      />
+                      <span id="blancoSpan">EMBUTIDO PROFUNDO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="estampado" value="1" />
+                      <span id="blancoSpan">ESTAMPADO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="laminado" value="1" />
+                      <span id="blancoSpan">LAMINADO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="roscado" value="1" />
+                      <span id="blancoSpan">ROSCADO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="fundicion" value="1" />
+                      <span id="blancoSpan">FUNDICION</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="brocahdo" value="1" />
+                      <span id="blancoSpan">BROCAHDO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="fresado" value="1" />
+                      <span id="blancoSpan">FRESADO</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="talladoEngranes" value="1" />
+                      <span id="blancoSpan">TALLADO DE ENGRANES</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="oem" value="1" />
+                      <span id="negroSpan">OEM</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="extrusion" value="1" />
+                      <span id="blancoSpan">EXTRUSION</span>
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" name="dieCasting" value="1" />
+                      <span id="blancoSpan">DIE-CASTING ALUMINIO</span>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {{! Fin acordeon Iconos }}
+
+          {{! Inicio acordeon Presentaciones }}
+          <div class="accordion-item bg-transparent acordeonPresentaciones">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelPresentaciones"
+                aria-expanded="false"
+                aria-controls="panelPresentaciones"
+                type=""
+              >
+                Presentaciones
+              </button>
+            </h2>
+            <div id="panelPresentaciones" class="accordion-collapse collapse">
+              <div
+                class="accordion-body body-presentaciones container text-center"
+              >
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="l1" />
+                      <span>1 L</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="l5" />
+                      <span>5 L</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="l19" />
+                      <span>19 L</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="l200" />
+                      <span>200 L</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="l1000" />
+                      <span>1000 L</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="kg1" />
+                      <span>1 KG</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="kg4" />
+                      <span>4 KG</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="kg15" />
+                      <span>15 KG</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="kg17" />
+                      <span>17 KG</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="kg18" />
+                      <span>18 KG</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="kg20" />
+                      <span>20 KG</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="kg180" />
+                      <span>180 KG</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="kg1000" />
+                      <span>1000KG</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="ct4kg" />
+                      <span>CT 4KG</span>
+                    </label>
+                  </div>
+
+                  <div class="col">
+                    <label>
+                      <input type="checkbox" value="1" name="spray" />
+                      <span>SPRAY</span>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {{! Fin Acordeon Presentaciones }}
+
+          {{! Inicio acordeon Especial Aceites }}
+          <div class="accordion-item bg-transparent d-none acordeonAceites">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelEspecialAceites"
+                aria-expanded="false"
+                aria-controls="panelEspecialAceites"
+                type=""
+              >
+                Especial Aceites
+              </button>
+            </h2>
+            <div id="panelEspecialAceites" class="accordion-collapse collapse">
+              <div class="accordion-body">
+
+                {{! <div class="form-especialAceites">
+                  <h5 class="h5color">Nota</h5>
+                  <textarea
+                    type="text"
+                    id="notaEspecialAceites"
+                    name="notaEspecialAceites"
+                    class="form-control dynamic-textarea"
+                    style="overflow:hidden;"
+                  ></textarea>
+                </div> }}
+                <!-- Otros campos del formulario -->
+                <label for="fileInput">Seleccionar Archivo:</label>
+                <input
+                  style="
+                  display: inline-block;
+                  padding: 6px 12px;
+                  cursor: pointer;"
+                  type="file"
+                  name="fileInput"
+                  id="fileInput"
+                  multiple
+                />
+
+              </div>
+            </div>
+          </div>
+          {{! Fin acordeon Especial Aceites }}
+
+          {{! Inicio acordeon Especial Grasas }}
+          <div class="accordion-item bg-transparent d-none acordeonGrasas">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelEspecialGrasas"
+                aria-expanded="false"
+                aria-controls="panelEspecialGrasas"
+                type=""
+              >
+                Especial Grasas
+              </button>
+            </h2>
+            <div id="panelEspecialGrasas" class="accordion-collapse collapse">
+              <div class="accordion-body">
+
+                <label for="fileInput">Seleccionar Archivo:</label>
+                <input
+                  style="
+                  display: inline-block;
+                  padding: 6px 12px;
+                  cursor: pointer;"
+                  type="file"
+                  name="fileInput"
+                  id="fileInput"
+                  multiple
+                />
+              </div>
+
+            </div>
+          </div>
+          {{! Fin acordeon Especial Grasas }}
+
+          <div
+            class="d-flex flex-column justify-content-end align-items-end mx-3 mt-3"
+            style="height: 100%;"
+          >
+            <button type="submit" class="btn btn-success">Agregar</button>
+          </div>
+
+        </div>
+        <!--Fin Acordeon-->
+      </form>
+      <!--FIN FORM-->
+
+    </div>
+    {{! Fin card }}
+
+    <!--JS de bootstrap-->
+    <script src="/bootstrap/bootstrap.js"></script>
+    {{! Textarea dinamico Información General}}
+    <script src="/js/agregarPage.js"></script>
+    {{! Mostrar mas opciones de acordeon }}
+    <script src="/js/mostrarAcordeon.js"></script>
+
+    {{! Manejar envio HT duplicado dede Cliente }}
+    <script src="/js/agregarHT/manejarEnvio.js"></script>
+    {{! Redirigir modal exito al cerrarse hacia "/" }}
+    <script src="/js/agregarHT/modalexito.js"></script>
+
+    {{! agregar o borrar divs de datosAceites, agrega subfijo _X(numero de div)}}
+    <script src="/js/agregarHT/duplicarDivs.js"></script>
+    {{! agregar o borrar divs de datosGrasas, agrega subfijo _X(numero de div)}}
+    <script src="/js/agregarHT/duplicarDivsDatosGrasas.js"></script>
+    {{! agregar o borrar divs de datosoOtros, agrega subfijo _X(numero de div)}}
+    <script src="/js/agregarHT/duplicarDivsDatosOtros.js"></script>
+
+  </body>
+</html>

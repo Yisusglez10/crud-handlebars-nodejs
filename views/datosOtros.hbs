@@ -1,0 +1,942 @@
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Datos Otros</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" />
+    <!--CSS de bootstrap-->
+    <link rel="stylesheet" href="/bootstrap/bootstrap.css" />
+    <!--CSS estilo de la página-->
+    <link rel="stylesheet" href="/css/styleDatosGrasas.css" type="text/css" />
+    {{! CSS fonts }}
+    <link rel="stylesheet" href="/css/fonts.css" />
+  </head>
+
+  <body>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => { const
+      contenedorTabla = document.getElementById("contenedorTabla");
+      setTimeout(() => { contenedorTabla.style.display = "block"; }, 500); });
+    </script>
+
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <div class="container">
+        <!--Logo-->
+        <a class="navbar-brand fs-4" href="/">Yisus</a>
+        <a class="navbar-brand fs-4" href="/">
+          <img
+            src="/assets/android-chrome-192x192.png"
+            style="height: 40px; width: auto"
+            alt="buttonpng"
+            border="0"
+          />
+        </a>
+        <!--Btn activación-->
+        <button
+          class="navbar-toggler shadow-none border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Sidebar-->
+        <div
+          class="sidebar offcanvas offcanvas-start"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <!-- Sidebar Header -->
+          <div class="offcanvas-header text-white border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Yisus</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white shadow-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Sidebar Body -->
+          <div class="offcanvas-body">
+            <ul
+              class="navbar-nav align-items-center fs-6 flex-grow-1 pe-3"
+              style="text-align:center;"
+            >
+              <li class="nav-item mx-2">
+                <a class="nav-link" aria-current="page" href="/infoGeneral">Info
+                  General</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosAceites"
+                >Datos Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosGrasas"
+                >Datos Grasas</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link active"
+                  href="/datosOtros"
+                >Datos Otros</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/iconos"
+                >Iconos</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/presentaciones"
+                >Presentaciones</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialAceites"
+                >Especial Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialGrasas"
+                >Especial Grasas</a>
+              </li> <li class="nav-item mx-2">
+                {{!-- {{#if login}} --}}
+                  <a 
+                  href="logout"
+                  style="font-weight: bold;"
+                  class="ml-2 btn btn-outline-danger"
+                  >Logout
+                  </a>
+                {{!-- {{/if}} --}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Card -->
+    <div class="card">
+
+      <div class="mx-auto p-2">
+        <h1
+          class="mt-2"
+          style="font-size: 30px; font-family: 'Pier_Sans_Bold'; color:white; text-shadow: 0 0 4px black"
+        >
+          DATOS OTROS</h1>
+      </div>
+
+      {{! Card Body }}
+      <div class="card-body" style="padding-bottom: 0px; padding-top: 0px;">
+        <div class="container-fluid">
+          <div class="row">
+
+            {{! Buscador y mostrar }}
+            <div class="d-flex flex-row justify-content-between mb-3">
+              <div class="d-flex">
+                <label
+                  class="input-group-text label-select"
+                  style="color: white; font-weight: bold; text-shadow: 0 0 4px black"
+                  for="perPageSelect"
+                >Mostrar</label>
+                <select class="form-select" id="perPageSelect">
+                  <option value="10" selected>10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                </select>
+                <label
+                  class="input-group-text label-select"
+                  style="color: white; font-weight: bold; text-shadow: 0 0 4px black"
+                  for="perPageSelect"
+                >registros</label>
+              </div>
+
+              <input
+                type="button"
+                value="+ Agregar"
+                class="btn btn-success"
+                onclick="location.href='/datosOtrosAdd' "
+              />
+
+              <div class="d-flex">
+                <div class="input-group">
+                  <input
+                    class="inputBuscar form-control"
+                    type="text"
+                    id="inputBusqueda"
+                    placeholder="Buscar..."
+                    aria-describedby="basic-addon2"
+                  />
+                  <span class="input-group-text">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-search"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12" id="contenedorTabla" style="display: none;">
+              <table
+                class="rounded rounded-3 overflow-hidden table"
+                id="tablaDatos"
+              >
+                <thead>
+                  <tr>
+                    <th style="display:none;">ID</th>
+                    <th>Hoja Técnica</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each data}}
+                    <tr>
+                      <td
+                        tabindex="0"
+                        style="display:none;"
+                      >{{this.idDatosOtros}}</td>
+                      <td tabindex="0">{{this.FK_HojaTecnicaDatosOtros}}</td>
+                      <td tabindex="0">{{this.otroCodigo}}</td>
+                      <td tabindex="0">{{this.otroNombre}}</td>
+                      <td tabindex="0" class="d-flex align-items-center">
+                        <button
+                          type="button"
+                          class="btn btn-success btn-sm me-2 btn-modal"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalVisor"
+                          data-id="{{this.idDatosOtros}}"
+                          data-pk="{{this.FK_HojaTecnicaDatosOtros}}"
+                          data-codigo="{{this.otroCodigo}}"
+                          data-nombre="{{this.otroNombre}}"
+                          data-prueba3="{{this.prueba3}}"
+                          data-prueba4="{{this.prueba4}}"
+                          data-prueba5="{{this.prueba5}}"
+                          data-prueba2="{{this.prueba2}}"
+                          data-prueba30="{{this.prueba30}}"
+                          data-prueba20="{{this.prueba20}}"
+                          data-prueba41="{{this.prueba41}}"
+                          data-prueba43="{{this.prueba43}}"
+                          data-prueba9="{{this.prueba9}}"
+                          data-prueba44="{{this.prueba44}}"
+                          data-prueba46="{{this.prueba46}}"
+                          data-prueba7="{{this.prueba7}}"
+                          data-prueba54="{{this.prueba54}}"
+                          data-prueba19="{{this.prueba19}}"
+                          data-prueba49="{{this.prueba49}}"
+                          data-prueba51="{{this.prueba51}}"
+                          data-prueba32="{{this.prueba32}}"
+                          data-prueba33="{{this.prueba33}}"
+                          data-prueba65="{{this.prueba65}}"
+                          data-prueba31="{{this.prueba31}}"
+                          data-prueba66="{{this.prueba66}}"
+                          data-prueba34="{{this.prueba34}}"
+                          data-prueba67="{{this.prueba67}}"
+                          data-prueba68="{{this.prueba68}}"
+                          data-prueba37="{{this.prueba37}}"
+                          data-prueba63="{{this.prueba63}}"
+                          data-prueba26="{{this.prueba26}}"
+                          data-prueba36="{{this.prueba36}}"
+                          data-prueba38="{{this.prueba38}}"
+                          data-prueba39="{{this.prueba39}}"
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-eye-fill"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"
+                            />
+                            <path
+                              d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"
+                            />
+                          </svg></button>
+                        <button
+                          type="button"
+                          class="btn btn-primary btn-sm me-2 btn-modal-editar"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalVisorEditar"
+                          data-id="{{this.idDatosOtros}}"
+                          data-pk="{{this.FK_HojaTecnicaDatosOtros}}"
+                          data-codigo="{{this.otroCodigo}}"
+                          data-nombre="{{this.otroNombre}}"
+                          data-prueba3="{{this.prueba3}}"
+                          data-prueba4="{{this.prueba4}}"
+                          data-prueba5="{{this.prueba5}}"
+                          data-prueba2="{{this.prueba2}}"
+                          data-prueba30="{{this.prueba30}}"
+                          data-prueba20="{{this.prueba20}}"
+                          data-prueba41="{{this.prueba41}}"
+                          data-prueba43="{{this.prueba43}}"
+                          data-prueba9="{{this.prueba9}}"
+                          data-prueba44="{{this.prueba44}}"
+                          data-prueba46="{{this.prueba46}}"
+                          data-prueba7="{{this.prueba7}}"
+                          data-prueba54="{{this.prueba54}}"
+                          data-prueba19="{{this.prueba19}}"
+                          data-prueba49="{{this.prueba49}}"
+                          data-prueba51="{{this.prueba51}}"
+                          data-prueba32="{{this.prueba32}}"
+                          data-prueba33="{{this.prueba33}}"
+                          data-prueba65="{{this.prueba65}}"
+                          data-prueba31="{{this.prueba31}}"
+                          data-prueba66="{{this.prueba66}}"
+                          data-prueba34="{{this.prueba34}}"
+                          data-prueba67="{{this.prueba67}}"
+                          data-prueba68="{{this.prueba68}}"
+                          data-prueba37="{{this.prueba37}}"
+                          data-prueba63="{{this.prueba63}}"
+                          data-prueba26="{{this.prueba26}}"
+                          data-prueba36="{{this.prueba36}}"
+                          data-prueba38="{{this.prueba38}}"
+                          data-prueba39="{{this.prueba39}}"
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-pen"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"
+                            />
+                          </svg></button>
+                        <button
+                          type="button"
+                          class="btn btn-danger btn-sm me-2"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalBorrar"
+                          data-id="{{this.idDatosOtros}}"
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-trash-fill"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
+                            />
+                          </svg></button>
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{! Card Footer }}
+      <div class="card-footer border-0">
+        <div class="container-fluid">
+          <div class="row d-flex align-items-center">
+            <div
+              class="d-flex col-12 justify-content-center col-lg-6 justify-content-lg-start"
+            >
+              <!-- Elemento para mostrar el mensaje cuando no se encuentran registros -->
+              <span
+                style="padding: 10px; font-weight: bold; color:white; text-shadow: 0 0 4px black"
+                id="paginationInfo"
+              ></span>
+              <!-- Texto paginacion -->
+              <label id="labelRegistros"></label>
+            </div>
+            <div
+              class="d-flex col-12 justify-content-center col-lg-6 justify-content-lg-end"
+            >
+              <div id="paginationButtons" class="d-flex justify-content-end">
+                <ul>
+                  <li>
+                    <button id="prevButton" class="custom-navigation-button">
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      id="nextButton"
+                      class="custom-navigation-button"
+                    ></button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{! Fin card  }}
+
+    {{! MODALES }}
+    <!-- Modal Visor-->
+    <div
+      class="modal fade"
+      id="modalVisor"
+      tabindex="-1"
+      aria-labelledby="modalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title fs-5 col-11 text-center"
+              id="modalLabel"
+            ></h5>
+          </div>
+          <div class="modal-body">
+            <form class="custom-form">
+
+              <div class="form-group">
+                <h5>Hoja Técnica</h5>
+                <label type="text" class="modal-pk" />
+              </div>
+              <div class="form-group">
+                <h5>Código</h5>
+                <label type="text" class="modal-codigo" />
+              </div>
+              <div class="form-group">
+                <h5>Nombre</h5>
+                <label type="text" class="modal-nombre" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 2</h5>
+                <label type="text" class="modal-prueba2" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 3</h5>
+                <label type="text" class="modal-prueba3" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 4</h5>
+                <label type="text" class="modal-prueba4" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 5</h5>
+                <label type="text" class="modal-prueba5" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 7</h5>
+                <label type="text" class="modal-prueba7" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 9</h5>
+                <label type="text" class="modal-prueba9" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 19</h5>
+                <label type="text" class="modal-prueba19" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 20</h5>
+                <label type="text" class="modal-prueba20" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 26</h5>
+                <label type="text" class="modal-prueba26" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 30</h5>
+                <label type="text" class="modal-prueba30" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 31</h5>
+                <label type="text" class="modal-prueba31" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 32</h5>
+                <label type="text" class="modal-prueba32" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 33</h5>
+                <label type="text" class="modal-prueba33" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 34</h5>
+                <label type="text" class="modal-prueba34" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 36</h5>
+                <label type="text" class="modal-prueba36" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 37</h5>
+                <label type="text" class="modal-prueba37" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 38</h5>
+                <label type="text" class="modal-prueba38" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 39</h5>
+                <label type="text" class="modal-prueba39" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 41</h5>
+                <label type="text" class="modal-prueba41" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 43</h5>
+                <label type="text" class="modal-prueba43" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 44</h5>
+                <label type="text" class="modal-prueba44" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 46</h5>
+                <label type="text" class="modal-prueba46" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 49</h5>
+                <label type="text" class="modal-prueba49" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 51</h5>
+                <label type="text" class="modal-prueba51" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 54</h5>
+                <label type="text" class="modal-prueba54" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 63</h5>
+                <label type="text" class="modal-prueba63" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 65</h5>
+                <label type="text" class="modal-prueba65" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 66</h5>
+                <label type="text" class="modal-prueba66" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 67</h5>
+                <label type="text" class="modal-prueba67" />
+              </div>
+              <div class="form-group">
+                <h5>Prueba 68</h5>
+                <label type="text" class="modal-prueba68" />
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >Cerrar</button>
+            {{! <button type="button" class="btn btn-primary">Save changes</button> }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{! Modal Editar }}
+    <div
+      class="modal fade"
+      id="modalVisorEditar"
+      tabindex="-1"
+      aria-labelledby="modalLabelEditar"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <form action="/datosOtrosUpdate" method="POST" class="">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5
+                class="modal-title-editar fs-5 col-11 text-center"
+                id="modalLabelEditar"
+              ></h5>
+            </div>
+
+            <div class="modal-body">
+              <textarea
+                id="textareaID"
+                name="textareaID"
+                style="display:none;"
+                class="dynamic-textarea form-control modal-id"
+              ></textarea>
+
+              <textarea
+                id="textareaPK"
+                name="textareaPK"
+                style="display:none;"
+                class="dynamic-textarea form-control modal-pk"
+              ></textarea>
+
+              <h5 class="h5modal">Código</h5>
+              <textarea
+                readonly
+                id="textareaCodigo"
+                name="textareaCodigo"
+                style="overflow:hidden; background-color:rgb(218, 218, 218);"
+                class="dynamic-textarea form-control modal-codigo"
+              ></textarea>
+
+              <h5 class="h5modal">Nombre</h5>
+              <textarea
+                {{! readonly }}
+                id="textareaNombre"
+                name="textareaNombre"
+                class="dynamic-textarea form-control modal-nombre"
+              ></textarea>
+              <h5 class="h5modal">Prueba 2</h5>
+              <textarea
+                id="textareaPrueba2"
+                name="textareaPrueba2"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba2"
+              ></textarea>
+              <h5 class="h5modal">Prueba 3</h5>
+              <textarea
+                id="textareaPrueba3"
+                name="textareaPrueba3"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba3"
+              ></textarea>
+              <h5 class="h5modal">Prueba 4</h5>
+              <textarea
+                id="textareaPrueba4"
+                name="textareaPrueba4"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba4"
+              ></textarea>
+              <h5 class="h5modal">Prueba 5</h5>
+              <textarea
+                id="textareaPrueba5"
+                name="textareaPrueba5"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba5"
+              ></textarea>
+              <h5 class="h5modal">Prueba 7</h5>
+              <textarea
+                id="textareaPrueba7"
+                name="textareaPrueba7"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba7"
+              ></textarea>
+              <h5 class="h5modal">Prueba 9</h5>
+              <textarea
+                id="textareaPrueba9"
+                name="textareaPrueba9"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba9"
+              ></textarea>
+              <h5 class="h5modal">Prueba 19</h5>
+              <textarea
+                id="textareaPrueba19"
+                name="textareaPrueba19"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba19"
+              ></textarea>
+              <h5 class="h5modal">Prueba 20</h5>
+              <textarea
+                id="textareaPrueba20"
+                name="textareaPrueba20"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba20"
+              ></textarea>
+              <h5 class="h5modal">Prueba 26</h5>
+              <textarea
+                id="textareaPrueba26"
+                name="textareaPrueba26"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba26"
+              ></textarea>
+              <h5 class="h5modal">Prueba 30</h5>
+              <textarea
+                id="textareaPrueba30"
+                name="textareaPrueba30"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba30"
+              ></textarea>
+              <h5 class="h5modal">Prueba 31</h5>
+              <textarea
+                id="textareaPrueba31"
+                name="textareaPrueba31"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba31"
+              ></textarea>
+              <h5 class="h5modal">Prueba 32</h5>
+              <textarea
+                id="textareaPrueba32"
+                name="textareaPrueba32"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba32"
+              ></textarea>
+              <h5 class="h5modal">Prueba 33</h5>
+              <textarea
+                id="textareaPrueba33"
+                name="textareaPrueba33"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba33"
+              ></textarea>
+              <h5 class="h5modal">Prueba 34</h5>
+              <textarea
+                id="textareaPrueba34"
+                name="textareaPrueba34"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba34"
+              ></textarea>
+              <h5 class="h5modal">Prueba 36</h5>
+              <textarea
+                id="textareaPrueba36"
+                name="textareaPrueba36"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba36"
+              ></textarea>
+              <h5 class="h5modal">Prueba 37</h5>
+              <textarea
+                id="textareaPrueba37"
+                name="textareaPrueba37"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba37"
+              ></textarea>
+              <h5 class="h5modal">Prueba 38</h5>
+              <textarea
+                id="textareaPrueba38"
+                name="textareaPrueba38"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba38"
+              ></textarea>
+              <h5 class="h5modal">Prueba 39</h5>
+              <textarea
+                id="textareaPrueba39"
+                name="textareaPrueba39"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba39"
+              ></textarea>
+              <h5 class="h5modal">Prueba 41</h5>
+              <textarea
+                id="textareaPrueba41"
+                name="textareaPrueba41"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba41"
+              ></textarea>
+              <h5 class="h5modal">Prueba 43</h5>
+              <textarea
+                id="textareaPrueba43"
+                name="textareaPrueba43"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba43"
+              ></textarea>
+              <h5 class="h5modal">Prueba 44</h5>
+              <textarea
+                id="textareaPrueba44"
+                name="textareaPrueba44"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba44"
+              ></textarea>
+              <h5 class="h5modal">Prueba 46</h5>
+              <textarea
+                id="textareaPrueba46"
+                name="textareaPrueba46"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba46"
+              ></textarea>
+              <h5 class="h5modal">Prueba 49</h5>
+              <textarea
+                id="textareaPrueba49"
+                name="textareaPrueba49"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba49"
+              ></textarea>
+              <h5 class="h5modal">Prueba 51</h5>
+              <textarea
+                id="textareaPrueba51"
+                name="textareaPrueba51"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba51"
+              ></textarea>
+              <h5 class="h5modal">Prueba 54</h5>
+              <textarea
+                id="textareaPrueba54"
+                name="textareaPrueba54"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba54"
+              ></textarea>
+              <h5 class="h5modal">Prueba 63</h5>
+              <textarea
+                id="textareaPrueba63"
+                name="textareaPrueba63"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba63"
+              ></textarea>
+              <h5 class="h5modal">Prueba 65</h5>
+              <textarea
+                id="textareaPrueba65"
+                name="textareaPrueba65"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba65"
+              ></textarea>
+              <h5 class="h5modal">Prueba 66</h5>
+              <textarea
+                id="textareaPrueba66"
+                name="textareaPrueba66"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba66"
+              ></textarea>
+              <h5 class="h5modal">Prueba 67</h5>
+              <textarea
+                id="textareaPrueba67"
+                name="textareaPrueba67"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba67"
+              ></textarea>
+              <h5 class="h5modal">Prueba 68</h5>
+              <textarea
+                id="textareaPrueba68"
+                name="textareaPrueba68"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-prueba68"
+              ></textarea>
+
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="submit"
+                id="btnActualizar"
+                class="btn btn-success"
+                data-bs-target="#modalExito"
+                data-bs-toggle="modal"
+              >Actualizar</button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >Cerrar</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal Borrar -->
+    <div
+      class="modal fade"
+      id="modalBorrar"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="deleteForm" method="POST">
+            <input type="hidden" id="idValueInput" name="id" value="" />
+            <!-- Agrega un método POST y la ruta que corresponda a tu aplicación -->
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <h5>¿Estás seguro de eliminar este dato?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-danger">ELIMINAR</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de éxito -->
+    <div
+      class="modal"
+      id="modalExito"      tabindex="-1"
+      aria-labelledby="modalExitoLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalExitoLabel">Éxito</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h5 style="font-size: 18px;" id="modalExitoMessage">La Hoja Técnica
+              <span id="pkValueSpan"></span>
+              ha sido actualizada con éxito.</h5>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--JS de bootstrap-->
+    <script src="/bootstrap/bootstrap.js"></script>
+      
+    <!--Select paginación-->
+    <script src="/js/datosOtros/paginaybusca.js"></script>
+    <!--Modal Visor-->
+    <script src="/js/datosOtros/modalVisorDatosOtros.js"></script>
+    <!--Modal Editar-->
+    <script src="/js/datosOtros/modalEditarDatosOtros.js"></script>
+    <!--Modal Exito (Actualizar)-->
+    <script src="/js/datosOtros/modalEditarDatosOtrosExitoso.js"></script>
+    <!--Modal Borrar-->
+    <script src="/js/datosOtros/modalBorrarOtros.js"></script>
+
+  </body>
+</html>

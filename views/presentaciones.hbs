@@ -1,0 +1,528 @@
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Presentaciones</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" />
+    <!--CSS de bootstrap-->
+    <link rel="stylesheet" href="/bootstrap/bootstrap.css" />
+    <!--CSS estilo de la página-->
+    <link
+      rel="stylesheet"
+      href="/css/stylePresentaciones.css"
+      type="text/css"
+    />
+    {{! CSS fonts }}
+    <link rel="stylesheet" href="/css/fonts.css" />
+  </head>
+
+  <body>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => { const
+      contenedorTabla = document.getElementById("contenedorTabla");
+      setTimeout(() => { contenedorTabla.style.display = "block"; }, 500); });
+    </script>
+
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <div class="container">
+        <!--Logo-->
+        <a class="navbar-brand fs-4" href="/">Yisus</a>
+        <a class="navbar-brand fs-4" href="/">
+          <img
+            src="/assets/android-chrome-192x192.png"
+            style="height: 40px; width: auto"
+            alt="buttonpng"
+            border="0"
+          />
+        </a>
+        <!--Btn activación-->
+        <button
+          class="navbar-toggler shadow-none border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Sidebar-->
+        <div
+          class="sidebar offcanvas offcanvas-start"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <!-- Sidebar Header -->
+          <div class="offcanvas-header text-white border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Yisus</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white shadow-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Sidebar Body -->
+          <div class="offcanvas-body">
+            <ul
+              class="navbar-nav align-items-center fs-6 flex-grow-1 pe-3"
+              style="text-align:center;"
+            >
+              <li class="nav-item mx-2">
+                <a class="nav-link" aria-current="page" href="/infoGeneral">Info
+                  General</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosAceites"
+                >Datos Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosGrasas"
+                >Datos Grasas</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosOtros"
+                >Datos Otros</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/iconos"
+                >Iconos</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link active"
+                  href="/presentaciones"
+                >Presentaciones</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialAceites"
+                >Especial Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialGrasas"
+                >Especial Grasas</a>
+              </li> <li class="nav-item mx-2">
+                {{!-- {{#if login}} --}}
+                  <a 
+                  href="logout"
+                  style="font-weight: bold;"
+                  class="ml-2 btn btn-outline-danger"
+                  >Logout
+                  </a>
+                {{!-- {{/if}} --}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Card -->
+    <div class="card">
+
+      <div class="mx-auto p-2">
+        <h1
+          class="mt-2"
+          style="font-size: 30px; font-family: 'Pier_Sans_Bold'; color:white; text-shadow: 0 0 4px black"
+        >
+          PRESENTACIONES</h1>
+      </div>
+
+      {{! Card Body }}
+      <div class="card-body" style="padding-bottom: 0px; padding-top: 0px;">
+        <div class="container-fluid">
+          <div class="row">
+
+            {{! Buscador y mostrar }}
+            <div class="d-flex flex-row justify-content-between mb-3">
+              <div class="d-flex">
+                <label
+                  class="input-group-text label-select"
+                  style="color: white; font-weight: bold; text-shadow: 0 0 4px black"
+                  for="perPageSelect"
+                >Mostrar</label>
+                <select class="form-select" id="perPageSelect">
+                  <option value="10" selected>10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                </select>
+                <label
+                  class="input-group-text label-select"
+                  style="color: white; font-weight: bold; text-shadow: 0 0 4px black"
+                  for="perPageSelect"
+                >registros</label>
+              </div>
+
+              <div class="d-flex">
+                <div class="input-group">
+                  <input
+                    class="inputBuscar form-control"
+                    type="text"
+                    id="inputBusqueda"
+                    placeholder="Buscar..."
+                    aria-describedby="basic-addon2"
+                  />
+                  <span class="input-group-text">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-search"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12" id="contenedorTabla" style="display: none;">
+              <table
+                class="rounded rounded-3 overflow-hidden table"
+                id="tablaDatos"
+              >
+                <thead>
+                  <tr>
+                    <th style="display:none;">ID</th>
+                    <th>Hoja Técnica</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each data}}
+                    <tr>
+                      <td
+                        tabindex="0"
+                        style="display:none;"
+                      >{{this.idPresentaciones}}</td>
+                      <td
+                        tabindex="0"
+                      >{{this.FK_HojaTecnicaPresentaciones}}</td>
+                      <td tabindex="0" class="d-flex align-items-center">
+                        <button
+                          type="button"
+                          class="btn btn-primary btn-sm me-2 btn-modal-editar"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalVisorEditar"
+                          data-id="{{this.idPresentaciones}}"
+                          data-pk="{{this.FK_HojaTecnicaPresentaciones}}"
+                          data-presentacion19l="{{this.presentacion19L}}"
+                          data-presentacion200l="{{this.presentacion200L}}"
+                          data-presentacion1l="{{this.presentacion1L}}"
+                          data-presentacion18kg="{{this.presentacion18KG}}"
+                          data-presentacion180kg="{{this.presentacion180KG}}"
+                          data-presentacion1kg="{{this.presentacion1KG}}"
+                          data-presentacion4kg="{{this.presentacion4KG}}"
+                          data-presentacion15kg="{{this.presentacion15KG}}"
+                          data-presentacion17kg="{{this.presentacion17KG}}"
+                          data-presentacion20kg="{{this.presentacion20KG}}"
+                          data-presentacionct4kg="{{this.presentacionCT4KG}}"
+                          data-presentacionspray="{{this.presentacionSPRAY}}"
+                          data-presentacion5l="{{this.presentacion5L}}"
+                          data-presentacion1000l="{{this.presentacion1000L}}"
+                          data-presentacion1000kg="{{this.presentacion1000KG}}"
+                        ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-pen"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"
+                            />
+                          </svg></button>
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{! Card Footer }}
+      <div class="card-footer border-0">
+        <div class="container-fluid">
+          <div class="row d-flex align-items-center">
+            <div
+              class="d-flex col-12 justify-content-center col-lg-6 justify-content-lg-start"
+            >
+              <!-- Elemento para mostrar el mensaje cuando no se encuentran registros -->
+              <span
+                style="padding: 10px; font-weight: bold; color:white; text-shadow: 0 0 4px black"
+                id="paginationInfo"
+              ></span>
+              <!-- Texto paginacion -->
+              <label id="labelRegistros"></label>
+            </div>
+            <div
+              class="d-flex col-12 justify-content-center col-lg-6 justify-content-lg-end"
+            >
+              <div id="paginationButtons" class="d-flex justify-content-end">
+                <ul>
+                  <li>
+                    <button id="prevButton" class="custom-navigation-button">
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      id="nextButton"
+                      class="custom-navigation-button"
+                    ></button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{! Fin card  }}
+
+    {{! MODALES }}
+
+    {{! Modal Editar }}
+    <div
+      class="modal fade"
+      id="modalVisorEditar"
+      tabindex="-1"
+      aria-labelledby="modalLabelEditar"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <form action="/presentacionesUpdate" method="POST" class="">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5
+                class="modal-title-editar fs-5 col-11 text-center"
+                id="modalLabelEditar"
+              ></h5>
+            </div>
+
+            <div class="modal-body body-presentaciones container text-center">
+
+              <textarea
+                id="textareaID"
+                name="textareaID"
+                style="display:none;"
+                class="dynamic-textarea form-control modal-id"
+              ></textarea>
+
+              <textarea
+                id="textareaPK"
+                name="textareaPK"
+                style="display:none;"
+                class="dynamic-textarea form-control modal-pk"
+              ></textarea>
+
+              <div class="row">
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="l1" />
+                    <span>1 L</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="l5" />
+                    <span>5 L</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="l19" />
+                    <span>19 L</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="l200" />
+                    <span>200 L</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="l1000" />
+                    <span>1000 L</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="kg1" />
+                    <span>1 KG</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="kg4" />
+                    <span>4 KG</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="kg15" />
+                    <span>15 KG</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="kg17" />
+                    <span>17 KG</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="kg18" />
+                    <span>18 KG</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="kg20" />
+                    <span>20 KG</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="kg180" />
+                    <span>180 KG</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="kg1000" />
+                    <span>1000KG</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="ct4kg" />
+                    <span>CT 4KG</span>
+                  </label>
+                </div>
+
+                <div class="col">
+                  <label>
+                    <input type="checkbox" value="1" name="spray" />
+                    <span>SPRAY</span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="submit"
+                id="btnActualizar"
+                class="btn btn-success"
+                data-bs-target="#modalExito"
+                data-bs-toggle="modal"
+              >Actualizar</button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >Cerrar</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal de éxito -->
+    <div
+      class="modal"
+      id="modalExito"      tabindex="-1"
+      aria-labelledby="modalExitoLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalExitoLabel">Éxito</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h5 style="font-size: 18px;" id="modalExitoMessage">La Hoja Técnica
+              <span id="pkValueSpan"></span>
+              ha sido actualizada con éxito.</h5>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--JS de bootstrap-->
+    <script src="/bootstrap/bootstrap.js"></script>
+      
+    <!--Select paginación-->
+    <script src="/js/presentaciones/paginaybusca.js"></script>
+    {{! Mandar datos al modal desde la base y se pintendd }}
+    <script src="/js/presentaciones/presentacionesCheck.js"></script>
+    <!--Modal Exito (Actualizar)-->
+    <script
+      src="/js/presentaciones/modalEditarPresentacionesExitoso.js"
+    ></script>
+
+  </body>
+</html>

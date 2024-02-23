@@ -1,0 +1,250 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  font-family: "Pier_Sans_Reg";
+}
+
+body {
+  background-image: url(../assets/silhouette-175970.jpg);
+  /* https://pixabay.com/photos/silhouette-landscape-dawn-dusk-175970 free license*/
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .sidebar {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+  }
+}
+/* Color de navbar, card y containers de tabla */
+.cardTabla {
+  margin-top: 0px;
+  margin-bottom: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background: #fff5;
+  backdrop-filter: blur(7px);
+}
+
+/*textarea*/
+#autoresizing {
+  display: block;
+  overflow: hidden;
+  resize: none;
+}
+.modal-body textarea {
+  font-family: "OpenSans-Regular";
+}
+
+.h5color {
+  color: white;
+  font-family: "OpenSans-Regular";
+  text-shadow: 0 0 4px black;
+}
+/* label datos Aceites */
+.h5datosAceite {
+  color: white;
+  font-family: "OpenSans-Regular";
+  text-shadow: 0 0 4px black;
+  font-size: 15px;
+}
+/* label datos grasas */
+.h5datosGrasas {
+  color: white;
+  font-family: "OpenSans-Regular";
+  text-shadow: 0 0 4px black;
+  font-size: 15px;
+}
+/* label datos grasas */
+.h5datosOtros {
+  color: white;
+  font-family: "OpenSans-Regular";
+  text-shadow: 0 0 4px black;
+  font-size: 15px;
+}
+
+
+/* .accordion-body.container{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  } */
+/* PANEL PRESENTACIONES */
+.accordion-body.body-presentaciones div span {
+  cursor: pointer;
+}
+.accordion-body.body-presentaciones div label input[type="checkbox"] {
+  display: none;
+}
+.accordion-body.body-presentaciones div label span {
+  position: relative;
+  display: inline-block;
+  background: #666666;
+  padding: 10px 20px;
+  color: rgb(184, 184, 184);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 15px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+.accordion-body.body-presentaciones div label span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+.accordion-body.body-presentaciones
+  div
+  label
+  input[type="checkbox"]:checked
+  ~ span {
+  background: #0416b4;
+  color: white;
+  box-shadow: 0 2px 20px #0416b4;
+}
+
+/* PANEL ICONOS */
+#panelIconos .body-iconos div label {
+  display: inline-block;
+  cursor: default; /* Cambiar el cursor para el label */
+}
+/* 
+#panelIconos .body-iconos div label span{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #3b3b3b;
+  padding: 10px 15px;
+  color: rgb(192, 192, 192);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+} */
+
+#verdeSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #0fb800;
+  padding: 10px 15px;
+  color: rgb(0, 0, 0);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#azulSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #00b3c0;
+  padding: 10px 15px;
+  color: rgb(0, 0, 0);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#blancoSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #b9b9b9;
+  padding: 10px 15px;
+  color: rgb(0, 0, 0);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#rojoSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #b80000;
+  padding: 10px 15px;
+  color: rgb(192, 192, 192);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#negroSpan{
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  background: #000000;
+  padding: 10px 15px;
+  color: rgb(192, 192, 192);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  user-select: none;
+  overflow: hidden;
+}
+
+#panelIconos .body-iconos div label span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+#panelIconos .body-iconos div label input[type="checkbox"] {
+  display: none;
+}
+#panelIconos .body-iconos div label input[type="checkbox"]:checked ~ span {
+  background: #0416b4;
+  color: white;
+  box-shadow: 0 2px 20px #0416b4;
+}
+
+/* Datos Aceites */
+.formulario-datosaceites textarea{
+  font-size: 12px;
+}
+
+/* Datos Aceites */
+.formulario-datosgrasas textarea{
+  font-size: 12px;
+}
+
+/* Datos Aceites */
+.formulario-datosOtros textarea{
+  font-size: 12px;
+}

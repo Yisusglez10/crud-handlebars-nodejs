@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "Pier_Sans_Reg";
+    src: url(../fonts/PierSansWeb/PierSans-Regular.woff);
+    font-display: fallback  ;
+}
+
+@font-face {
+    font-family: "Pier_Sans_Bold";
+    src: url(../fonts/PierSansWeb/PierSans-Bold.woff);
+    font-display: fallback  ;
+}
+
+@font-face {
+    font-family: "Pier_Sans_Black";
+    src: url(../fonts/PierSansWeb/PierSans-Black.woff);
+    font-display: fallback  ;
+}
+
+@font-face {
+    font-family: "Pier_Sans_Light";
+    src: url(../fonts/PierSansWeb/PierSans-Light.woff);
+    font-display: fallback  ;
+}
+
+
+/*Letras Open Sans*/
+@font-face {
+    font-family: "OpenSans-Bold";
+    src: url(../fonts/OpenSansWeb/OpenSans-Bold.woff);
+    font-display: fallback  ;
+}
+
+@font-face {
+    font-family: "OpenSans-Regular";
+    src: url(../fonts/OpenSansWeb/OpenSans-Regular.woff);
+    font-display: fallback  ;
+}
+
+@font-face {
+    font-family: "OpenSans-Light";
+    src: url(../fonts/OpenSansWeb/OpenSans-Light.woff);
+    font-display: fallback  ;
+}
+
+@font-face {
+    font-family: "OpenSans-Semibold";
+    src: url(../fonts/OpenSansWeb/OpenSans-Semibold.woff);
+    font-display: fallback  ;
+}

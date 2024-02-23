@@ -1,0 +1,750 @@
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Info General</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" />
+    <!--CSS de bootstrap-->
+    <link rel="stylesheet" href="/bootstrap/bootstrap.css" />
+    <!--CSS estilo de la página-->
+    <link rel="stylesheet" href="/css/styleInfoGeneral.css" />
+    {{! CSS fonts }}
+    <link rel="stylesheet" href="/css/fonts.css" />
+  </head>
+
+  <body>
+
+    <!--Script ara mostrar tabla 500ms después de ser cargada para evitar ver ajuste css-->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => { const
+      contenedorTabla = document.getElementById("contenedorTabla");
+      setTimeout(() => { contenedorTabla.style.display = "block"; }, 400); });
+    </script>
+
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <div class="container">
+        <!--Logo-->
+        <a class="navbar-brand fs-4" href="/">Yisus</a>
+        <a class="navbar-brand fs-4" href="/">
+          <img
+            src="/assets/android-chrome-192x192.png"
+            style="height: 40px; width: auto"
+            alt="buttonpng"
+            border="0"
+          />
+        </a>
+        <!--Btn activación-->
+        <button
+          class="navbar-toggler shadow-none border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!--Sidebar-->
+        <div
+          class="sidebar offcanvas offcanvas-start"
+          tabindex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <!-- Sidebar Header -->
+          <div class="offcanvas-header text-white border-bottom">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Yisus</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white shadow-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Sidebar Body -->
+          <div class="offcanvas-body">
+            <ul
+              class="navbar-nav align-items-center fs-6 flex-grow-1 pe-3"
+              style="text-align:center;"
+            >
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link active"
+                  aria-current="page"
+                  href="/infoGeneral"
+                >Info General</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosAceites"
+                >Datos Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosGrasas"
+                >Datos Grasas</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/datosOtros"
+                >Datos Otros</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/iconos"
+                >Iconos</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/presentaciones"
+                >Presentaciones</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialAceites"
+                >Especial Aceites</a>
+              </li>
+              <li class="nav-item mx-2">
+                <a
+                  style="font-weight: bold;"
+                  class="nav-link"
+                  href="/especialGrasas"
+                >Especial Grasas</a>
+              </li> <li class="nav-item mx-2">
+                {{!-- {{#if login}} --}}
+                  <a 
+                  href="logout"
+                  style="font-weight: bold;"
+                  class="ml-2 btn btn-outline-danger"
+                  >Logout
+                  </a>
+                {{!-- {{/if}} --}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="card">
+
+      <div class="mx-auto p-2">
+        <h1
+          class="mt-2"
+          style="font-size: 30px; font-family: 'Pier_Sans_Bold'; color:white; text-shadow: 0 0 4px black"
+        >
+          INFORMACIÓN GENERAL</h1>
+      </div>
+
+      <div class="card-body" style="padding-bottom: 0px; padding-top: 0px;">
+        <div class="container-fluid">
+          <div class="row">
+
+            <div class="d-flex flex-row justify-content-between mb-3">
+              <div class="d-flex">
+                <label
+                  class="input-group-text label-select"
+                  style="color: white; font-weight: bold; text-shadow: 0 0 4px black"
+                  for="perPageSelect"
+                >Mostrar</label>
+                <select class="form-select" id="perPageSelect">
+                  <option value="10" selected>10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                </select>
+                <label
+                  class="input-group-text label-select"
+                  style="color: white; font-weight: bold; text-shadow: 0 0 4px black"
+                  for="perPageSelect"
+                >registros</label>
+              </div>
+
+              <div class="d-flex">
+                <div class="input-group">
+                  <input
+                    class="inputBuscar form-control"
+                    type="text"
+                    id="inputBusqueda"
+                    placeholder="Buscar..."
+                    aria-describedby="basic-addon2"
+                  />
+                  <span class="input-group-text">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-search"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                      />
+                    </svg>
+                  </span>
+                </div>
+                {{! inputgroup }}
+              </div>
+            </div>
+
+            <!-- Display none, para no mostrar la tabla hasta que actue script -->
+            <div class="col-12" id="contenedorTabla" style="display: none;">
+              <table
+                class="rounded rounded-3 overflow-hidden table"
+                id="tablaDatos"
+              >
+                <thead>
+                  <tr>
+                    <th style="display:none;">ID</th>
+                    <th>Hoja Técnica</th>
+                    <th>Categoria</th>
+                    <th>Nombre</th>
+                    <th>Color</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each data}}
+                    <tr>
+                      <td
+                        style="display:none;"
+                        tabindex="0"
+                      >{{this.idInfoGeneralHT}}</td>
+                      <td tabindex="0">{{this.PK_HojaTecnica}}</td>
+                      <td tabindex="0">{{this.categoria}}</td>
+                      <td tabindex="0">{{this.nombre}}</td>
+                      <td tabindex="0">{{this.color}}</td>
+                      <td tabindex="0">
+                        <button
+                          type="button"
+                          class="btn btn-success btn-sm me-2 btn-modal"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalVisor"
+                          {{! Paso todos los datos al modal mediante el data-* }}
+                          data-id="{{this.idInfoGeneralHT}}"
+                          data-pk="{{this.PK_HojaTecnica}}"
+                          data-categoria="{{this.categoria}}"
+                          data-nombre="{{this.nombre}}"
+                          data-subtitulo="{{this.subtitulo}}"
+                          data-descripcion="{{this.descripcion}}"
+                          data-beneficios="{{this.beneficios}}"
+                          data-aplicaciones="{{this.aplicaciones}}"
+                          data-color="{{this.color}}"
+                          data-textura="{{this.textura}}"
+                          data-forma="{{this.formaDeAplicacion}}"
+                          data-revision="{{this.revision}}"
+                          data-extra="{{this.extra}}"
+                          data-propiedades="{{this.propiedadesFisicas}}"
+                          data-recomendaciones="{{this.recomendacionesDeMezcla}}"
+                          data-compuesto="{{this.preparacionDelCompuesto}}"
+                          data-caracteristicas="{{this.caracteristicas}}"
+                          data-superficie="{{this.preparacionSuperficie}}"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-eye-fill"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"
+                            />
+                            <path
+                              d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"
+                            />
+                          </svg></button>
+                        <button
+                          {{! BOTON EDITAR }}
+                          type="button"
+                          class="btn btn-primary btn-sm me-2 btn-modal-editar"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalVisorEditar"
+                          {{! Paso todos los datos al modal
+                      mediante el data-* }}
+                          data-id="{{this.idInfoGeneralHT}}"
+                          data-pk="{{this.PK_HojaTecnica}}"
+                          data-categoria="{{this.categoria}}"
+                          data-nombre="{{this.nombre}}"
+                          data-subtitulo="{{this.subtitulo}}"
+                          data-descripcion="{{this.descripcion}}"
+                          data-beneficios="{{this.beneficios}}"
+                          data-aplicaciones="{{this.aplicaciones}}"
+                          data-color="{{this.color}}"
+                          data-textura="{{this.textura}}"
+                          data-forma="{{this.formaDeAplicacion}}"
+                          data-revision="{{this.revision}}"
+                          data-extra="{{this.extra}}"
+                          data-propiedades="{{this.propiedadesFisicas}}"
+                          data-recomendaciones="{{this.recomendacionesDeMezcla}}"
+                          data-compuesto="{{this.preparacionDelCompuesto}}"
+                          data-caracteristicas="{{this.caracteristicas}}"
+                          data-superficie="{{this.preparacionSuperficie}}"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            class="bi bi-pen"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"
+                            />
+                          </svg></button>
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              {{! Fin Tabla }}
+            </div>
+            {{! divtabla }}
+
+          </div>
+          {{! row }}
+        </div>
+        {{! container-fluid }}
+      </div>
+      {{! card-body }}
+
+      <div class="card-footer border-0">
+        <div class="container-fluid">
+
+          <div class="row d-flex align-items-center">
+
+            <div
+              class="d-flex col-12 justify-content-center col-lg-6 justify-content-lg-start"
+            >
+              <!-- Elemento para mostrar el mensaje cuando no se encuentran registros -->
+              <span
+                style="padding: 10px; font-weight: bold; color:white; text-shadow: 0 0 4px black"
+                id="paginationInfo"
+              ></span>
+              <!-- Texto paginacion -->
+              <label id="labelRegistros"></label>
+            </div>
+
+            <div
+              class="d-flex col-12 justify-content-center col-lg-6 justify-content-lg-end"
+            >
+              <div id="paginationButtons" class="d-flex justify-content-end">
+                {{! <nav aria-label="Navegación de páginas"> }}
+                <ul>
+                  <li>
+                    <button id="prevButton" class="custom-navigation-button">
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      id="nextButton"
+                      class="custom-navigation-button"
+                    ></button>
+                  </li>
+                </ul>
+                {{!
+              </nav> }}
+              </div>
+              {{! Paginación botones }}
+
+            </div>
+          </div>
+        </div>
+        {{! Div paginacion y texto misma linea }}
+      </div>
+      {{! card-footer }}
+
+    </div>
+    {{! card }}
+
+    <!-- Modal Visor-->
+    <div
+      class="modal fade"
+      id="modalVisor"
+      tabindex="-1"
+      aria-labelledby="modalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title fs-5 col-11 text-center"
+              id="modalLabel"
+            ></h5>
+          </div>
+          <div class="modal-body">
+            <form class="custom-form">
+              <div class="form-group">
+                <h5>Hoja Técnica</h5>
+                <label type="text" class="modal-pk" />
+              </div>
+              <div class="form-group">
+                <h5>Categoría</h5>
+                <label type="text" class="modal-categoria" />
+              </div>
+              <div class="form-group">
+                <h5>Nombre</h5>
+                <label type="text" class="modal-nombre" />
+              </div>
+              <div class="form-group">
+                <h5>Subtitulo</h5>
+                <label type="text" class="modal-subtitulo" />
+              </div>
+              <div class="form-group">
+                <h5>Descripción</h5>
+                <label type="text" class="modal-descripcion" />
+              </div>
+              <div class="form-group">
+                <h5>Beneficios</h5>
+                <label type="text" class="modal-beneficios" />
+              </div>
+              <div class="form-group">
+                <h5>Aplicaciones</h5>
+                <label type="text" class="modal-aplicaciones" />
+              </div>
+              <div class="form-group">
+                <h5>Color</h5>
+                <label type="text" class="modal-color" />
+              </div>
+              <div class="form-group">
+                <h5>Textura</h5>
+                <label type="text" class="modal-textura" />
+              </div>
+              <div class="form-group">
+                <h5>Forma De aplicación</h5>
+                <label type="text" class="modal-forma" />
+              </div>
+              <div class="form-group">
+                <h5>Revisión</h5>
+                <label type="text" class="modal-revision" />
+              </div>
+              <div class="form-group">
+                <h5>Extra</h5>
+                <label type="text" class="modal-extra" />
+              </div>
+              <div class="form-group">
+                <h5>Propiedades físicas</h5>
+                <label type="text" class="modal-propiedades" />
+              </div>
+              <div class="form-group">
+                <h5>Recomendaciones de mezcla</h5>
+                <label type="text" class="modal-recomendaciones" />
+              </div>
+              <div class="form-group">
+                <h5>Preparación del compuesto</h5>
+                <label type="text" class="modal-compuesto" />
+              </div>
+              <div class="form-group">
+                <h5>Características</h5>
+                <label type="text" class="modal-caracteristicas" />
+              </div>
+              <div class="form-group">
+                <h5>Preparación de superficie</h5>
+                <label type="text" class="modal-superficie" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >Cerrar</button>
+            {{! <button type="button" class="btn btn-primary">Save changes</button> }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{! Modal Editar }}
+    <div
+      class="modal fade"
+      id="modalVisorEditar"
+      tabindex="-1"
+      aria-labelledby="modalLabelEditar"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <form action="/infoGeneralUpdate" method="POST" class="">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5
+                class="modal-title-editar fs-5 col-11 text-center"
+                id="modalLabelEditar"
+              ></h5>
+            </div>
+
+            <div class="modal-body">
+              <textarea
+                id="textareaID"
+                name="textareaID"
+                style="display:none;"
+                class="dynamic-textarea form-control modal-id"
+              ></textarea>
+
+              <textarea
+                id="textareaPK"
+                name="textareaPK"
+                style="display:none;"
+                class="dynamic-textarea form-control modal-pk"
+              ></textarea>
+
+              <h5 class="h5modal">Categoría</h5>
+              <textarea
+                readonly
+                id="textareaCategoria"
+                name="textareaCategoria"
+                style="overflow:hidden; background-color:rgb(218, 218, 218);"
+                class="dynamic-textarea form-control modal-categoria"
+              ></textarea>
+
+              <h5 class="h5modal">Nombre</h5>
+              <textarea
+                readonly
+                id="textareaNombre"
+                name="textareaNombre"
+                style="overflow:hidden; background-color:rgb(218, 218, 218); "
+                class="dynamic-textarea form-control modal-nombre"
+              ></textarea>
+
+              <h5 class="h5modal">Subtitulo</h5>
+              <textarea
+                id="textareaSubtitulo"
+                name="textareaSubtitulo"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-subtitulo"
+              ></textarea>
+
+              <h5 class="h5modal">Descripción</h5>
+              <textarea
+                id="textareaDescripcion"
+                name="textareaDescripcion"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-descripcion"
+              ></textarea>
+
+              <h5 class="h5modal">Beneficios</h5>
+              <textarea
+                id="textareaBeneficios"
+                name="textareaBeneficios"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-beneficios"
+              ></textarea>
+
+              <h5 class="h5modal">Aplicaciones</h5>
+              <textarea
+                id="textareaAplicaciones"
+                name="textareaAplicaciones"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-aplicaciones"
+              ></textarea>
+
+              <h5 class="h5modal">Color</h5>
+              <textarea
+                id="textareaColor"
+                name="textareaColor"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-color"
+              ></textarea>
+
+              <h5 class="h5modal">Textura</h5>
+              <textarea
+                id="textareaTextura"
+                name="textareaTextura"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-textura"
+              ></textarea>
+
+              <h5 class="h5modal">Forma De aplicación</h5>
+              <textarea
+                id="textareaFormaAplicacion"
+                name="textareaFormaAplicacion"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-forma"
+              ></textarea>
+
+              <h5 class="h5modal">Revisión</h5>
+              <textarea
+                id="textareaRevision"
+                name="textareaRevision"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-revision"
+              ></textarea>
+
+              <h5 class="h5modal">Extra</h5>
+              <textarea
+                id="textareaExtra"
+                name="textareaExtra"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-extra"
+              ></textarea>
+
+              <h5 class="h5modal">Propiedades físicas</h5>
+              <textarea
+                id="textareaPropiedadesFisicas"
+                name="textareaPropiedadesFisicas"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-propiedades"
+              ></textarea>
+
+              <h5 class="h5modal">Recomendaciones de mezcla</h5>
+              <textarea
+                id="textareaRecomendacionesMezcla"
+                name="textareaRecomendacionesMezcla"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-recomendaciones"
+              ></textarea>
+
+              <h5 class="h5modal">Preparación del compuesto</h5>
+              <textarea
+                id="textareaPreparacionCompuesto"
+                name="textareaPreparacionCompuesto"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-compuesto"
+              ></textarea>
+
+              <h5 class="h5modal">Características</h5>
+              <textarea
+                id="textareaCaracteristicas"
+                name="textareaCaracteristicas"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-caracteristicas"
+              ></textarea>
+
+              <h5 class="h5modal">Preparación de superficie</h5>
+              <textarea
+                id="textareaPreparacionSuperficie"
+                name="textareaPreparacionSuperficie"
+                style="overflow:hidden"
+                class="dynamic-textarea form-control modal-superficie"
+              ></textarea>
+
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="submit"
+                id="btnActualizar"
+                class="btn btn-success"
+                data-bs-target="#modalExito"
+                data-bs-toggle="modal"
+              >Actualizar</button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >Cerrar</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL BORRAR -->
+    <div
+      class="modal fade"
+      id="modalBorrar"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="deleteForm" method="POST">
+            <input type="hidden" id="pkValueInput" name="pk" value="" />
+            <!-- Agrega un método POST y la ruta que corresponda a tu aplicación -->
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <h5>Esta acción borrará el elemento en todas las tablas. ¿Estás
+                seguro de eliminar esta Hoja Técnica?</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-danger">ELIMINAR</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de éxito -->
+    <div
+      class="modal"
+      id="modalExito"      tabindex="-1"
+      aria-labelledby="modalExitoLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalExitoLabel">Éxito</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h5 style="font-size: 18px;" id="modalExitoMessage">La Hoja Técnica
+              <span id="pkValueSpan"></span>
+              ha sido actualizada con éxito.</h5>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--JS de bootstrap-->
+    <script src="/bootstrap/bootstrap.js"></script>
+    {{! Modal Editar Exito }}
+    <script src="/js/modalExitoInfoGral.js"></script>
+    <!--Select paginación-->
+    <script src="/js/paginaybusca.js"></script>
+    <!--Modal Visor-->
+    <script src="/js/modal.js"></script>
+    {{! Modal Editar }}
+    <script src="/js/modalEditar.js"></script>
+    {{! Agregar el valor de borrar al modal por js }}
+    <script src="/js/manejadordeEventos.js"></script>
+
+  </body>
+
+</html>
